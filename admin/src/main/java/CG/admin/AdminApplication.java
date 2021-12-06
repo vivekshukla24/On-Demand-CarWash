@@ -1,12 +1,12 @@
 package CG.admin;
 
+import CG.admin.model.AdminDetails;
 import CG.admin.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
 
 @SpringBootApplication
 public class AdminApplication implements CommandLineRunner {
@@ -18,6 +18,8 @@ public class AdminApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		ar.save(Arrays.asList(new ))
+		if(ar.findAll().isEmpty()){
+			ar.save(new AdminDetails(1,"dummy"));
+		}
 	}
 }

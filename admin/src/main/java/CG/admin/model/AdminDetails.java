@@ -10,6 +10,12 @@ public class AdminDetails {
     @Id
     int id;
     String name;
+
+    public AdminDetails(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
