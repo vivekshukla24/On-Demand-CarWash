@@ -3,7 +3,7 @@ package CG.admin.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "CarInfo")
 public class Car {
     @Id
     int id;
