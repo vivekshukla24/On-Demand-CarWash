@@ -23,9 +23,10 @@ public class AdminController{
     @Autowired
     private WashPackRepo wr;
 
-    @GetMapping("/all")
+    @GetMapping("/findall")
     public List<AdminDetails> Alladmins(){
         return ar.findAll();
     }
+
 }
 

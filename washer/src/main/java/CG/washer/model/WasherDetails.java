@@ -19,7 +19,7 @@ public class WasherDetails {
     @NotEmpty(message = "password must not be empty")
     String password;
 
-
+    //Getter and Setter
     public int getId() {
         return id;
     }
@@ -38,7 +38,6 @@ public class WasherDetails {
     public void setLocation(String location) {
         this.location = location;
     }
-
     public String getPassword() {
         return password;
     }
@@ -46,6 +45,7 @@ public class WasherDetails {
         this.password = password;
     }
 
+    //Constructor
     public WasherDetails(int id,String name, String location,String password) {
         super();
         this.id = id;
@@ -53,15 +53,14 @@ public class WasherDetails {
         this.location = location;
         this.password = password;
     }
-    public WasherDetails() {
 
-    }
     @Override
     public String toString() {
-        return "WasherDetails [id=" + id + ", name=" + name + ", location=" + location + ", password=" + password + "]";
+        return "WasherDetails{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
-
-
-
-
 }

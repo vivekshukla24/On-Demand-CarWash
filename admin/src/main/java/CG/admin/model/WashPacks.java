@@ -12,6 +12,15 @@ public class WashPacks {
     int cost;
     String description;
 
+    //Constructor
+    public WashPacks(int id, String name, int cost, String description) {
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+        this.description = description;
+    }
+
+    //Getters and Setters
     public int getCost() {
         return cost;
     }
@@ -36,8 +45,15 @@ public class WashPacks {
     public void setName(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
-        return "WashPacks [id=" + id + ", name=" + name + ", cost=" + cost + ", description=" + description + "]";
+        return "WashPacks{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cost=" + cost +
+                ", description='" + description + '\'' +
+                '}';
     }
+
 }

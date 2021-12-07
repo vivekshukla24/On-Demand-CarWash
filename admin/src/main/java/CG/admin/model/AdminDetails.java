@@ -1,6 +1,5 @@
 package CG.admin.model;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,11 +10,13 @@ public class AdminDetails {
     int id;
     String name;
 
+    //Constructor
     public AdminDetails(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    //Getters and Setters
     public int getId() {
         return id;
     }
@@ -31,7 +32,10 @@ public class AdminDetails {
 
     @Override
     public String toString() {
-        return "AdminDetails [id=" + id + ", name=" + name + "]";
+        return "AdminDetails{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
 }

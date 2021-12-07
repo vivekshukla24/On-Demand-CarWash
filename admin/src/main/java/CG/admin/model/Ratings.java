@@ -10,11 +10,18 @@ public class Ratings {
     @Id
     @NotEmpty(message = "Rating should not be empty")
     int rating;
-
     @NotEmpty(message = "Name should not be empty")
     String washerName;
     String comment;
 
+    //Constructor
+    public Ratings(int rating, String washerName, String comment) {
+        this.rating = rating;
+        this.washerName = washerName;
+        this.comment = comment;
+    }
+
+    //Getters and Setters
     public int getRating() {
         return rating;
     }
@@ -33,9 +40,14 @@ public class Ratings {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
     @Override
     public String toString() {
-        return "RatingDetails [rating=" + rating + ", washerName=" + washerName + ", comment=" + comment + "]";
+        return "Ratings{" +
+                "rating=" + rating +
+                ", washerName='" + washerName + '\'' +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 
 }

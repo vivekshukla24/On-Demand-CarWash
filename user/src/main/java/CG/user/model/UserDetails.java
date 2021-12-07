@@ -53,14 +53,14 @@ public class UserDetails {
         this.location = location;
         this.password = password;
     }
-    public UserDetails() {
-        super();
-    }
 
     @Override
     public String toString() {
-        return "UserDetails [id=" + id + ", name=" + name + ", location=" + location + ", password=" + password + "]";
+        return "UserDetails{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
-
-
 }
