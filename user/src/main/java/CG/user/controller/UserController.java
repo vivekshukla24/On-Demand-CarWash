@@ -1,7 +1,10 @@
 package CG.user.controller;
 
 import CG.user.Repository.UserRepository;
+import CG.user.model.Car;
 import CG.user.model.UserDetails;
+import CG.user.service.carService;
+import CG.user.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
@@ -13,36 +16,42 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    private UserRepository ur;
+    private userService us;
+    @Autowired
+    private carService cs;
 
     //To get all the users
     @GetMapping("/findall")
     public List<UserDetails> findallUsers(){
-        return ur.findAll();
+        return us.findallUsers();
+    }
+    //To add a car
+    @PostMapping("/addcar")
+    public Car addCar(@RequestBody Car car){
+        return cs.addCar(car);
+    }
+    @DeleteMapping("/deletecar/{id}")
+    public String deletemyCar(@PathVariable int id){
+        return cs.deleteCar(id);
     }
     //To find a user by id
-    @GetMapping("/findone/{id}")
+    @GetMapping("/findoneuser/{id}")
     public UserDetails findoneUser(@PathVariable int id){
-        return ur.findById(id).get();
+        return us.findoneUser(id);
     }
     //To add a user
-    @PostMapping("/add")
+    @PostMapping("/adduser")
     public UserDetails addUser(@RequestBody UserDetails userDetails) {
-        return ur.save(userDetails);
+        return us.addUser(userDetails);
     }
     //To delete a user
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteuser/{id}")
     public String deleteUser(@PathVariable int id){
-        ur.deleteById(id);
-        return "User Deleted Successfully";
+        return us.deleteUser(id);
     }
     //To update a user
-    @PutMapping
+    @PutMapping("/updateuser")
     public UserDetails updateuser(@RequestBody UserDetails userDetails){
-        UserDetails existingUser= ur.findById(userDetails.getId()).orElse(null);
-        existingUser.setName(userDetails.getName());
-        existingUser.setLocation(userDetails.getLocation());
-        existingUser.setPassword(userDetails.getPassword());
-        return existingUser;
+        return us.updateuser(userDetails);
     }
 }

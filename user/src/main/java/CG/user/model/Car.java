@@ -9,7 +9,7 @@ public class Car {
     @Id
     int id;
     String name;
-    String status;
+
 
     //Default Constructor
     public Car(){
@@ -17,10 +17,10 @@ public class Car {
     }
 
     //Constructor
-    public Car(int id, String name, String status) {
+    public Car(int id, String name) {
         this.id = id;
         this.name = name;
-        this.status = status;
+
     }
 
     //Getters and Setters
@@ -34,17 +34,12 @@ public class Car {
     public void setName(String name) {
         this.name = name;
     }
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {this.status = status;}
 
     @Override
     public String toString() {
         return "Car{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

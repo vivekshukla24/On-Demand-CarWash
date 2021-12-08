@@ -25,7 +25,7 @@ public class UserApplication implements CommandLineRunner {
 			ur.save(new UserDetails(1,"dummy","dummy","dummy"));
 		}
 		if(cr.findAll().isEmpty()){
-			cr.save(new Car(1,"Honda","Active"));
+			cr.save(new Car(1,"Honda"));
 		}
 	}
 }
