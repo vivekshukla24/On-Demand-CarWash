@@ -20,7 +20,7 @@ public class OrderApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		if (or.findAll().isEmpty()){
-			or.save(new OrderDetails(1,"dummy","dummy",3,56,9911));
+			or.save(new OrderDetails(1,"dummy","dummy",3,56,9911,"Pending"));
 		}
 	}
 }

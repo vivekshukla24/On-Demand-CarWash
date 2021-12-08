@@ -1,8 +1,9 @@
-package CG.order.model;
+package CG.user.model;
 
-import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotEmpty;
 
 @Document(collection="orders")
 public class OrderDetails {

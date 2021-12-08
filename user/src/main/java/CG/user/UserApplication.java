@@ -9,12 +9,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @EnableEurekaClient
 @SpringBootApplication
 public class UserApplication implements CommandLineRunner {
 	@Autowired
 	private UserRepository ur;
+	@Bean
+	public RestTemplate getRestTemplate() {return new RestTemplate();}
 	@Autowired
 	private CarRepo cr;
 	public static void main(String[] args) {
