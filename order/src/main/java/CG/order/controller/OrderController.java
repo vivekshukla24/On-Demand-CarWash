@@ -31,7 +31,7 @@ public class OrderController {
     @DeleteMapping("/delete/{id}")
     public String deleteOrder(@PathVariable int id){
         or.deleteById(id);
-        return "Order Deleted Successfully";
+        return "Order with ID "+id+" deleted successfully";
     }
     //To update an order
     @PutMapping("/update")

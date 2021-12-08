@@ -27,7 +27,7 @@ public class WasherService {
     //To delete a washer
     public String deleteWasher(int id){
         wr.deleteById(id);
-        return "Washer Deleted Successfully";
+        return "Washer with "+id+" deleted successfully";
     }
     //To update a washer
     public WasherDetails updateWasher(WasherDetails washerDetails){

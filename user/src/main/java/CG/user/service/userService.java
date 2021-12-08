@@ -4,8 +4,6 @@ import CG.user.Repository.UserRepository;
 import CG.user.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Service
@@ -28,7 +26,7 @@ public class userService {
     //To delete a user
     public String deleteUser(int id){
         ur.deleteById(id);
-        return "User Deleted Successfully";
+        return "User with ID "+id+" deleted successfully";
     }
     //To update a user
     public UserDetails updateuser(UserDetails userDetails){

@@ -15,17 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/admins")
 public class AdminController{
-    @Autowired
-    private AdminRepo ar;
+
     @Autowired
     private RatingRepo rr;
     @Autowired
     private WashPackRepo wr;
 
-    @GetMapping("/findall")
-    public List<AdminDetails> Alladmins(){
-        return ar.findAll();
-    }
 
 }
 
