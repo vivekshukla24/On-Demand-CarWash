@@ -36,7 +36,7 @@ public class userService {
         existingUser.setName(userDetails.getName());
         existingUser.setLocation(userDetails.getLocation());
         existingUser.setPassword(userDetails.getPassword());
-        return existingUser;
+        return ur.save(existingUser);
     }
 
 }

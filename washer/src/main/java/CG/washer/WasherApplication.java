@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@EnableEurekaClient
 @SpringBootApplication
 public class WasherApplication implements CommandLineRunner {
 	@Autowired
@@ -18,7 +20,8 @@ public class WasherApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		if(wr.findAll().isEmpty()){
-			wr.save(new WasherDetails(1,"dummy","dummy","dummy"));
+			wr.save(new WasherDetails(1,"Joel","joel123"));
+			wr.save(new WasherDetails(2,"Kenny","kenny345"));
 		}
 	}
 }

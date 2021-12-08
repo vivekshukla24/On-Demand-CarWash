@@ -13,9 +13,6 @@ public class WasherDetails {
     @NotEmpty(message = "Name must not be empty")
     String name;
 
-    @NotEmpty(message = "Location must not be empty")
-    String location;
-
     @NotEmpty(message = "password must not be empty")
     String password;
 
@@ -32,12 +29,6 @@ public class WasherDetails {
     public void setName(String name) {
         this.name = name;
     }
-    public String getLocation() {
-        return location;
-    }
-    public void setLocation(String location) {
-        this.location = location;
-    }
     public String getPassword() {
         return password;
     }
@@ -45,12 +36,16 @@ public class WasherDetails {
         this.password = password;
     }
 
+    //Default Constructor
+    public WasherDetails(){
+
+    }
+
     //Constructor
-    public WasherDetails(int id,String name, String location,String password) {
+    public WasherDetails(int id,String name, String password) {
         super();
         this.id = id;
         this.name = name;
-        this.location = location;
         this.password = password;
     }
 
@@ -59,7 +54,6 @@ public class WasherDetails {
         return "WasherDetails{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

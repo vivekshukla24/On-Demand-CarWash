@@ -1,17 +1,13 @@
 package CG.user.controller;
 
-import CG.user.Repository.UserRepository;
 import CG.user.model.Car;
 import CG.user.model.UserDetails;
 import CG.user.service.carService;
 import CG.user.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@EnableEurekaClient
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -30,6 +26,12 @@ public class UserController {
     public Car addCar(@RequestBody Car car){
         return cs.addCar(car);
     }
+    //To find one car
+    @GetMapping("/findoneCar/{id}")
+    public Car findonecar(@PathVariable int id){
+        return cs.findoneCar(id);
+    }
+    //To delete a car
     @DeleteMapping("/deletecar/{id}")
     public String deletemyCar(@PathVariable int id){
         return cs.deleteCar(id);

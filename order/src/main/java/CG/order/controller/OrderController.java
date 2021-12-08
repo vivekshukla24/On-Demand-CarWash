@@ -3,11 +3,9 @@ package CG.order.controller;
 import CG.order.model.OrderDetails;
 import CG.order.repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@EnableEurekaClient
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -44,6 +42,6 @@ public class OrderController {
         existingOrder.setWashpackId(orderDetails.getWashpackId());
         existingOrder.setDate(orderDetails.getDate());
         existingOrder.setPhoneNo(orderDetails.getPhoneNo());
-        return existingOrder;
+        return or.save(existingOrder);
     }
 }

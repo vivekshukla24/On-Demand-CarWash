@@ -33,7 +33,7 @@ public class carService {
     public Car updateCar(Car car){
         Car existingCar= cr.findById(car.getId()).orElse(null);
         existingCar.setName(car.getName());
-        return existingCar;
+        return cr.save(existingCar);
     }
 
 }

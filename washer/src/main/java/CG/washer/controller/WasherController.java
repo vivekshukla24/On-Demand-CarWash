@@ -1,50 +1,40 @@
 package CG.washer.controller;
 
 import CG.washer.model.WasherDetails;
-import CG.washer.repository.WasherRepository;
+import CG.washer.service.WasherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@EnableEurekaClient
 @RestController
 @RequestMapping("/washers")
 public class WasherController {
     @Autowired
-    WasherRepository wr;
+    WasherService wr;
 
     //To find all users
-    @GetMapping("/findall")
+    @GetMapping("/findallWasher")
     public List<WasherDetails> findallWashers(){
-        return wr.findAll();
+        return wr.findallWashers();
     }
     //To find one washer with ID
-    @GetMapping("/findone/{id}")
+    @GetMapping("/findoneWasher/{id}")
     public WasherDetails findoneWasher(@PathVariable int id){
-        return wr.findById(id).get();
+        return wr.findoneWasher(id);
     }
     //To add a new Washer
     @PostMapping("/addWasher")
     public WasherDetails addWasher(@RequestBody WasherDetails washerDetails) {
-        return wr.save(washerDetails);
+        return wr.addWasher(washerDetails);
     }
     //To delete a washer
-    @DeleteMapping
+    @DeleteMapping("/deleteWasher/{id}")
     public String deleteWasher(@PathVariable int id){
-        wr.deleteById(id);
-        return "Washer Deleted Successfully";
+        return wr.deleteWasher(id);
     }
     //To update a washer
+    @PutMapping("/updateWasher")
     public WasherDetails updateWasher(@RequestBody WasherDetails washerDetails){
-        WasherDetails existingWasher = wr.findById(washerDetails.getId()).orElse(null);
-        existingWasher.setLocation(washerDetails.getLocation());
-        existingWasher.setName(washerDetails.getName());
-        existingWasher.setPassword(washerDetails.getPassword());
-        return existingWasher;
+        return wr.updateWasher(washerDetails);
     }
-
-
-
 }
