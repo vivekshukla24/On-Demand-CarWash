@@ -1,6 +1,6 @@
-package CG.admin.repository;
+package CG.user.Repository;
 
-import CG.admin.model.Car;
+import CG.user.model.Car;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CarRepo extends MongoRepository<Car, Integer> {

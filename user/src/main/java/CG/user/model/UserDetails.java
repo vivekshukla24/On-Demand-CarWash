@@ -46,6 +46,11 @@ public class UserDetails {
         this.password = password;
     }
 
+    //Default Constructor
+    public UserDetails(){
+
+    }
+    //Constructor
     public UserDetails(int id, String name, String location,String password) {
         super();
         this.id = id;

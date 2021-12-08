@@ -9,11 +9,18 @@ public class AdminDetails {
     @Id
     int id;
     String name;
+    String password;
+
+    //Default Constructor
+    public AdminDetails(){
+
+    }
 
     //Constructor
-    public AdminDetails(int id, String name) {
+    public AdminDetails(int id, String name, String password) {
         this.id = id;
         this.name = name;
+        this.password=password;
     }
 
     //Getters and Setters
@@ -29,6 +36,12 @@ public class AdminDetails {
     public void setName(String name) {
         this.name = name;
     }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
@@ -37,5 +50,4 @@ public class AdminDetails {
                 ", name='" + name + '\'' +
                 '}';
     }
-
 }

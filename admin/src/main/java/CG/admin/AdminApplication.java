@@ -1,11 +1,9 @@
 package CG.admin;
 
 import CG.admin.model.AdminDetails;
-import CG.admin.model.Car;
 import CG.admin.model.Ratings;
 import CG.admin.model.WashPacks;
 import CG.admin.repository.AdminRepo;
-import CG.admin.repository.CarRepo;
 import CG.admin.repository.RatingRepo;
 import CG.admin.repository.WashPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ public class AdminApplication implements CommandLineRunner {
 	@Autowired
 	private AdminRepo ar;
 	@Autowired
-	private CarRepo cr;
-	@Autowired
 	private RatingRepo rr;
 	@Autowired
 	private WashPackRepo wpr;
@@ -32,10 +28,7 @@ public class AdminApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		if(ar.findAll().isEmpty()){
-			ar.save(new AdminDetails(1,"dummy"));
-		}
-		if(cr.findAll().isEmpty()){
-			cr.save(new Car(1,"Honda","Active"));
+			ar.save(new AdminDetails(1,"dummy","dummy"));
 		}
 		if(rr.findAll().isEmpty()){
 			rr.save(new Ratings(1,"dummy","nocom"));

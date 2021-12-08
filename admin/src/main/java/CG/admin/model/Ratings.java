@@ -14,6 +14,11 @@ public class Ratings {
     String washerName;
     String comment;
 
+    //Default Constructor
+    public Ratings(){
+
+    }
+
     //Constructor
     public Ratings(int rating, String washerName, String comment) {
         this.rating = rating;

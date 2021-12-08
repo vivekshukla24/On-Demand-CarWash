@@ -12,6 +12,11 @@ public class WashPacks {
     int cost;
     String description;
 
+    //Default
+    public WashPacks(){
+
+    }
+
     //Constructor
     public WashPacks(int id, String name, int cost, String description) {
         this.id = id;

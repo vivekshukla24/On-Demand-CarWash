@@ -1,7 +1,6 @@
 package CG.order.model;
 
 import javax.validation.constraints.NotEmpty;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,6 +20,11 @@ public class OrderDetails {
     int date;
     @NotEmpty(message = "Phone number can't be empty")
     int phoneNo;
+
+    //Default Constructor
+    public OrderDetails(){
+
+    }
 
     //Constructor
     public OrderDetails(int orderId, String carName, String washerName, int washpackId, int date, int phoneNo) {

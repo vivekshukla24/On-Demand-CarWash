@@ -1,10 +1,11 @@
-package CG.admin.model;
+package CG.user.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "CarInfo")
 public class Car {
+    //Car ID should be identical to the ID of the user who added the order
     @Id
     int id;
     String name;
