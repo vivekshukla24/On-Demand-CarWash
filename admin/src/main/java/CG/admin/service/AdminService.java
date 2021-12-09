@@ -5,13 +5,13 @@ import CG.admin.model.OrderDetails;
 import CG.admin.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -51,7 +51,10 @@ public class AdminService {
     }
     //To update the status of the order
     public OrderDetails updateStatus(OrderDetails orderDetails){
-        HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails);
-        return restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails,headers);
+        OrderDetails od = restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
+        return od;
     }
 }

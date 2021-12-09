@@ -45,6 +45,7 @@ public class OrderController {
         existingOrder.setPhoneNo(orderDetails.getPhoneNo());
         return or.save(existingOrder);
     }
+    //This is called by Admin to update the status of the order
     @PutMapping("/updateStatus")
     public OrderDetails updateStatus(@RequestBody OrderDetails orderDetails){
         OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);

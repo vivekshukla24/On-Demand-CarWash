@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/admins")
 public class AdminController{
     @Autowired
-    AdminService ar;
+    AdminService as;
     @Autowired
     private RatingRepo rr;
     @Autowired
@@ -24,7 +24,7 @@ public class AdminController{
 
     @PutMapping("/updateStatus")
     public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
-       return ar.updateStatus(orderDetails);
+       return as.updateStatus(orderDetails);
     }
 }
 
