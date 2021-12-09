@@ -10,7 +10,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,6 +49,8 @@ public class AdminService {
         existingAdmin.setPassword(adminDetails.getPassword());
         return ar.save(existingAdmin);
     }
+
+    /** Only the methods that return to rest templates are below this comment**/
     //To update the status of the order
     public OrderDetails updateStatus(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
@@ -57,5 +58,10 @@ public class AdminService {
         HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails,headers);
         OrderDetails od = restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
         return od;
+    }
+    //To get all the orders
+    public List<OrderDetails> getallOrders(){
+        OrderDetails[] od= restTemplate.getForObject(url+"/findall", OrderDetails[].class);
+        return Arrays.asList(od);
     }
 }

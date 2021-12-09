@@ -1,5 +1,6 @@
 package CG.order.controller;
 
+import CG.order.exceptionHandlers.API_requestException;
 import CG.order.model.OrderDetails;
 import CG.order.repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,14 @@ public class OrderController {
     //To delete specific order with id
     @DeleteMapping("/delete/{id}")
     public String deleteOrder(@PathVariable int id){
-        or.deleteById(id);
-        return "Order with ID "+id+" deleted successfully";
+        boolean doesOrderExist=or.existsById(id);
+        if(doesOrderExist){
+            or.deleteById(id);
+            return "Order with ID "+id+" deleted successfully";
+        }
+        else {
+            throw new API_requestException("Order not found, deletion failed");
+        }
     }
     //To update an order
     @PutMapping("/update")

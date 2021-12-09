@@ -6,7 +6,6 @@ import CG.admin.repository.RatingRepo;
 import CG.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -39,10 +38,19 @@ public class AdminController{
         return as.updateAdmin(adminDetails);
     }
 
+    /** Only the methods that use rest template are below this comment**/
+
     /** The status of the order can be either pending or completed **/
     @PutMapping("/updateStatus")
     public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
        return as.updateStatus(orderDetails);
     }
+
+    /** To get all the orders using rest template from Order Microservice **/
+    @GetMapping("/allOrders")
+    public List<OrderDetails> getallOrders(){
+        return as.getallOrders();
+    }
+
 }
 
