@@ -20,7 +20,8 @@ public class AdminService {
     private RestTemplate restTemplate;
 
     //Url to access the methods of Order Service
-    String url="http://localhost:8082/orders";
+    //Provided with the Port of Gateway API
+    String url="http://localhost:9000/orders";
 
     @Autowired
     private AdminRepo ar;
