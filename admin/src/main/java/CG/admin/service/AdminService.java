@@ -20,7 +20,7 @@ public class AdminService {
     private RestTemplate restTemplate;
 
     //Url to access the methods of Order Service
-    String url="http://localhost:8082/orders";
+    String url="http://ORDER-SERVICE/orders";
 
     @Autowired
     private AdminRepo ar;
@@ -40,7 +40,7 @@ public class AdminService {
     //To delete an admin
     public String deleteAdmin(int id){
         ar.deleteById(id);
-        return "Admin with ID"+id+"deleted successfully";
+        return "Admin with ID "+id+" deleted successfully";
     }
     //To update an admin
     public AdminDetails updateAdmin(AdminDetails adminDetails){

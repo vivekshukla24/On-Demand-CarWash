@@ -36,4 +36,5 @@ public class WasherService {
         existingWasher.setPassword(washerDetails.getPassword());
         return wr.save(existingWasher);
     }
+    //To send the receipt to user
 }
