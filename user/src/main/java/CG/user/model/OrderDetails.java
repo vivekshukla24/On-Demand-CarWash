@@ -2,8 +2,8 @@ package CG.user.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Document(collection="orders")
 public class OrderDetails {
@@ -18,26 +18,25 @@ public class OrderDetails {
     @NotEmpty(message = "Wash pack can't be empty")
     int washpackId;
     @NotEmpty(message = "Date can't be empty")
-    int date;
-    @NotEmpty(message = "Phone number can't be empty")
     int phoneNo;
     @NotEmpty(message = "status can't be empty")
     String status;
+    @NotEmpty(message = "car field can't be empty")
+    List<Car> cars;
 
     //Default Constructor
     public OrderDetails(){
 
     }
 
-    //Constructor
-    public OrderDetails(int orderId, String carName, String washerName, int washpackId, int date, int phoneNo, String status) {
+    public OrderDetails(int orderId, String carName, String washerName, int washpackId, int phoneNo, String status, List<Car> cars) {
         this.orderId = orderId;
         this.carName = carName;
         this.washerName = washerName;
         this.washpackId = washpackId;
-        this.date = date;
         this.phoneNo = phoneNo;
-        this.status=status;
+        this.status = status;
+        this.cars = cars;
     }
 
     //Getters and Setters
@@ -65,12 +64,6 @@ public class OrderDetails {
     public void setWashpackId(int washpackId) {
         this.washpackId = washpackId;
     }
-    public int getDate() {
-        return date;
-    }
-    public void setDate(int date) {
-        this.date = date;
-    }
     public int getPhoneNo() {
         return phoneNo;
     }
@@ -83,6 +76,12 @@ public class OrderDetails {
     public void setStatus(String status) {
         this.status = status;
     }
+    public List<Car> getCars() {
+        return cars;
+    }
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
 
     @Override
     public String toString() {
@@ -91,9 +90,9 @@ public class OrderDetails {
                 ", carName='" + carName + '\'' +
                 ", washerName='" + washerName + '\'' +
                 ", washpackId=" + washpackId +
-                ", date=" + date +
                 ", phoneNo=" + phoneNo +
+                ", status='" + status + '\'' +
+                ", cars=" + cars +
                 '}';
     }
-
 }

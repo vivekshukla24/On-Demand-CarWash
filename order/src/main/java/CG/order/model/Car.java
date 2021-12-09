@@ -1,14 +1,15 @@
-package CG.admin.model;
+package CG.order.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "CarInfo")
+@Document
 public class Car {
+    //Car ID should be identical to the ID of the user who added the order
     @Id
     int id;
     String name;
-    String status;
+
 
     //Default Constructor
     public Car(){
@@ -16,10 +17,10 @@ public class Car {
     }
 
     //Constructor
-    public Car(int id, String name, String status) {
+    public Car(int id, String name) {
         this.id = id;
         this.name = name;
-        this.status = status;
+
     }
 
     //Getters and Setters
@@ -33,17 +34,12 @@ public class Car {
     public void setName(String name) {
         this.name = name;
     }
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {this.status = status;}
 
     @Override
     public String toString() {
         return "Car{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

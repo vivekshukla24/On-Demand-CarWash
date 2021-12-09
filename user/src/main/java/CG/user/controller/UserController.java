@@ -1,9 +1,7 @@
 package CG.user.controller;
 
-import CG.user.model.Car;
 import CG.user.model.OrderDetails;
 import CG.user.model.UserDetails;
-import CG.user.service.carService;
 import CG.user.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,8 +18,6 @@ public class UserController {
     private RestTemplate restTemplate;
     @Autowired
     private userService us;
-    @Autowired
-    private carService cs;
 
     //Url to access the methods of Order Service
     String url="http://localhost:8082/orders";
@@ -32,21 +28,6 @@ public class UserController {
         return us.findallUsers();
     }
     //To add a car
-    @PostMapping("/addcar")
-    public Car addCar(@RequestBody Car car){
-        return cs.addCar(car);
-    }
-    //To find one car
-    @GetMapping("/findoneCar/{id}")
-    public Car findonecar(@PathVariable int id){
-        return cs.findoneCar(id);
-    }
-    //To delete a car
-    @DeleteMapping("/deletecar/{id}")
-    public String deletemyCar(@PathVariable int id){
-        return cs.deleteCar(id);
-    }
-    //To find a user by id
     @GetMapping("/findoneuser/{id}")
     public UserDetails findoneUser(@PathVariable int id){
         return us.findoneUser(id);

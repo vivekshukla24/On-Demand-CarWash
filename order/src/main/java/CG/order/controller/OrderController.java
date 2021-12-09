@@ -40,7 +40,6 @@ public class OrderController {
         existingOrder.setCarName(orderDetails.getCarName());
         existingOrder.setWasherName(orderDetails.getWasherName());
         existingOrder.setWashpackId(orderDetails.getWashpackId());
-        existingOrder.setDate(orderDetails.getDate());
         existingOrder.setPhoneNo(orderDetails.getPhoneNo());
         return or.save(existingOrder);
     }
