@@ -2,6 +2,7 @@ package CG.user.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
@@ -11,8 +12,6 @@ public class OrderDetails {
     @Id
     @NotEmpty(message = "OrderId can't be empty")
     int orderId;
-    @NotEmpty(message = "Car name can't be empty")
-    String carName;
     @NotEmpty(message = "Washer Name Can't be empty")
     String washerName;
     @NotEmpty(message = "Wash pack can't be empty")
@@ -29,9 +28,9 @@ public class OrderDetails {
 
     }
 
-    public OrderDetails(int orderId, String carName, String washerName, int washpackId, int phoneNo, String status, List<Car> cars) {
+    //Constructor
+    public OrderDetails(int orderId, String washerName, int washpackId, int phoneNo, String status, List<Car> cars) {
         this.orderId = orderId;
-        this.carName = carName;
         this.washerName = washerName;
         this.washpackId = washpackId;
         this.phoneNo = phoneNo;
@@ -45,12 +44,6 @@ public class OrderDetails {
     }
     public void setOrderId(int orderId) {
         this.orderId = orderId;
-    }
-    public String getCarName() {
-        return carName;
-    }
-    public void setCarName(String carName) {
-        this.carName = carName;
     }
     public String getWasherName() {
         return washerName;
@@ -87,7 +80,6 @@ public class OrderDetails {
     public String toString() {
         return "OrderDetails{" +
                 "orderId=" + orderId +
-                ", carName='" + carName + '\'' +
                 ", washerName='" + washerName + '\'' +
                 ", washpackId=" + washpackId +
                 ", phoneNo=" + phoneNo +

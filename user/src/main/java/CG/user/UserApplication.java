@@ -16,7 +16,9 @@ public class UserApplication implements CommandLineRunner {
 	@Autowired
 	private UserRepository ur;
 	@Bean
-	public RestTemplate getRestTemplate() {return new RestTemplate();}
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(UserApplication.class, args);
 	}

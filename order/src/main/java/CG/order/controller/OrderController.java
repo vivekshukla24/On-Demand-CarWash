@@ -37,10 +37,18 @@ public class OrderController {
     @PutMapping("/update")
     public OrderDetails updateOrder(@RequestBody OrderDetails orderDetails){
         OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
-        existingOrder.setCarName(orderDetails.getCarName());
         existingOrder.setWasherName(orderDetails.getWasherName());
         existingOrder.setWashpackId(orderDetails.getWashpackId());
+        existingOrder.setCars(orderDetails.getCars());
+        //Reserved for admin
+        //existingOrder.setStatus(orderDetails.getStatus());
         existingOrder.setPhoneNo(orderDetails.getPhoneNo());
+        return or.save(existingOrder);
+    }
+    @PutMapping("/updateStatus")
+    public OrderDetails updateStatus(@RequestBody OrderDetails orderDetails){
+        OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
+        existingOrder.setStatus(orderDetails.getStatus());
         return or.save(existingOrder);
     }
 }

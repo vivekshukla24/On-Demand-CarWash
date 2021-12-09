@@ -23,7 +23,7 @@ public class OrderApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		if (or.findAll().isEmpty()){
-			or.save(new OrderDetails(1,"dummy","dummy",3,9911,"Pending", Arrays.asList(new Car(1,"Honda"))));
+			or.save(new OrderDetails(1,"dummy",3,9911,"Pending", Arrays.asList(new Car(1,"Honda"))));
 		}
 	}
 }

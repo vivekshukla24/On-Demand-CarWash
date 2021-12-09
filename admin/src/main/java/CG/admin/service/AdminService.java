@@ -1,13 +1,26 @@
 package CG.admin.service;
 
 import CG.admin.model.AdminDetails;
+import CG.admin.model.OrderDetails;
 import CG.admin.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 
 @Service
 public class AdminService {
+    @Autowired
+    private RestTemplate restTemplate;
+
+    //Url to access the methods of Order Service
+    String url="http://localhost:8082/orders";
 
     @Autowired
     private AdminRepo ar;
@@ -35,5 +48,10 @@ public class AdminService {
         existingAdmin.setName(adminDetails.getName());
         existingAdmin.setPassword(adminDetails.getPassword());
         return ar.save(existingAdmin);
+    }
+    //To update the status of the order
+    public OrderDetails updateStatus(OrderDetails orderDetails){
+        HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails);
+        return restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
     }
 }
