@@ -19,8 +19,7 @@ with the following tools.
 ### Mongo Databases
 - AdminDetails DB
 - User DB
-- Car DB
-- Order DB
+- Order DB - Embedded Document of Car model
 - Washer DB
 - Ratings DB
 - WashPacks DB
