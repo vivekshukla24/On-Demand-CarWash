@@ -10,7 +10,6 @@ public class Car {
     int id;
     String name;
 
-
     //Default Constructor
     public Car(){
 
