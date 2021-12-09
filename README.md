@@ -5,8 +5,8 @@ with the following tools.
 
 - IntelliJ IDEA Community edition 2021.2.3
 - MongoDB Atlas
-- Eureka Discovery Server
-- API-Gateway
+- Eureka Discovery Server - Port 8761
+- API-Gateway - Port 9000
 
 ## Microservices
 
