@@ -3,19 +3,20 @@
 This a on demand car wash service made using microservice architecture
 with the following tools.
 
-- IntelliJ IDEA Community edition
+- IntelliJ IDEA Community edition 2021.2.3
 - MongoDB Atlas
 - Eureka Discovery Server
-- Api-Gateway
+- API-Gateway
 
 ## Microservices
 
-- Admin Service 
-- User Service
-- Washer Service
-- Order Service
+- Admin Service - Port 8081
+- Order Service - Port 8082
+- User Service - Port 8083
+- Washer Service - Port 8085
 
-### Databases
+
+### Mongo Databases
 - AdminDetails DB
 - User DB
 - Car DB
@@ -23,16 +24,3 @@ with the following tools.
 - Washer DB
 - Ratings DB
 - WashPacks DB
-
-
-
-
-
-
-
-
-
-
-
-
-
