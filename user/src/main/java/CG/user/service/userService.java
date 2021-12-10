@@ -19,8 +19,9 @@ import java.util.List;
 public class userService {
     @Autowired
     private RestTemplate restTemplate;
-    //Url to access the methods of Order Service
 
+    //Url to access the methods of Order Service
+    //Provided with the Port of Gateway API
     String url="http://localhost:9000/orders";
     @Autowired
     private UserRepository ur;
@@ -72,7 +73,7 @@ public class userService {
         return od;
     }
 
-    //To update and order from User-end
+    //To update an order from User-end
     //This won't update the status of order
     public OrderDetails updateOrder(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
@@ -81,5 +82,9 @@ public class userService {
         OrderDetails od = restTemplate.exchange(url+"/update", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
         return od;
     }
-
+//    //To delete an Order from User-end
+//    public String deleteOrder(int id){
+//        String response=restTemplate.exchange(url+"/delete/"+id);
+//        return response;
+//    }
 }

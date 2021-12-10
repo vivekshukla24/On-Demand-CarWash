@@ -72,4 +72,15 @@ public class AdminService {
         OrderDetails[] od= restTemplate.getForObject(url+"/findall", OrderDetails[].class);
         return Arrays.asList(od);
     }
+
+    //To see the completed orders
+    public List<OrderDetails> getCompletedOrders(){
+        OrderDetails[] completedList = restTemplate.getForObject(url+"/findCompleted",OrderDetails[].class);
+        return Arrays.asList(completedList);
+    }
+    //To see the pending orders
+    public List<OrderDetails> getPendingOrders(){
+        OrderDetails[] pendingList = restTemplate.getForObject(url+"/findPending",OrderDetails[].class);
+        return Arrays.asList(pendingList);
+    }
 }

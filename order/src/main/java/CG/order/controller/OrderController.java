@@ -35,7 +35,7 @@ public class OrderController {
         boolean doesOrderExist=or.existsById(id);
         if(doesOrderExist){
             or.deleteById(id);
-            return "Order with ID "+id+" deleted successfully";
+            return "Order with ID -> "+id+" deleted successfully from OrderDB";
         }
         else {
             throw new API_requestException("Order not found, deletion failed");

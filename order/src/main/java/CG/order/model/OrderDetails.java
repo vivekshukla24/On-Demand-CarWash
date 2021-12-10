@@ -25,7 +25,6 @@ public class OrderDetails {
 
     //Default Constructor
     public OrderDetails(){
-
     }
 
     public OrderDetails(int orderId, String washerName, int washpackId, int phoneNo, String status, List<Car> cars) {

@@ -60,7 +60,7 @@ public class AdminController{
 
     /** Only the methods that use rest template are below this comment **/
 
-    /** The status of the order can be either pending or completed **/
+    //The status of the order can be either pending or completed
     @PutMapping("/updateStatus")
     public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
        return as.updateStatus(orderDetails);
@@ -72,5 +72,16 @@ public class AdminController{
         return as.getallOrders();
     }
 
+    //To see the completed orders
+    @GetMapping("/completedOrders")
+    public List<OrderDetails> getCompletedOrders(){
+        return as.getCompletedOrders();
+    }
+
+    //To see the pending orders
+    @GetMapping("/pendingOrders")
+    public List<OrderDetails> getPendingOrders(){
+        return as.getPendingOrders();
+    }
 }
 

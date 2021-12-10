@@ -7,6 +7,7 @@ with the following tools.
 - MongoDB Atlas
 - Eureka Discovery Server - Port 8761
 - API-Gateway - Port 9000
+- Swagger API
 
 ## Microservices
 
@@ -14,7 +15,6 @@ with the following tools.
 - Order Service - Port 8082
 - User Service - Port 8083
 - Washer Service - Port 8085
-
 
 ### Mongo Databases
 - AdminDetails DB
