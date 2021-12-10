@@ -83,5 +83,10 @@ public class AdminController{
     public List<OrderDetails> getPendingOrders(){
         return as.getPendingOrders();
     }
+
+    @GetMapping("/cancelledOrders")
+    public List<OrderDetails> getCancelledOrders(){
+        return as.getCancelledOrders();
+    }
 }
 

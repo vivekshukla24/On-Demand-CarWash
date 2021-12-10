@@ -50,4 +50,8 @@ public class WasherController {
     public List<OrderDetails> getPendingOrders(){
         return wr.getPendingOrders();
     }
+    @GetMapping("/cancelledOrders")
+    public List<OrderDetails> getCancelledOrders(){
+        return wr.getCancelledOrders();
+    }
 }

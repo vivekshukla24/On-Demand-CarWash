@@ -57,17 +57,31 @@ public class OrderController {
         else {
             throw new API_requestException("Order not found in database, update request failed");
         }
-
     }
+
     /** Getting consumed by the Washer model */
     //To find all the completed orders
     @GetMapping("/findCompleted")
     public List<OrderDetails> getCompletedOrders(){
          return or.findAll().stream().filter(x -> x.getStatus().contains("Completed")).collect(Collectors.toList());
     }
+    //To find all the pending orders
     @GetMapping("/findPending")
     public List<OrderDetails> getPendingOrders(){
         return or.findAll().stream().filter(x -> x.getStatus().contains("Pending")).collect(Collectors.toList());
+    }
+    //To find all the cancelled orders
+    @GetMapping("/findCancelled")
+    public List<OrderDetails> getCancelledOrders(){
+        return or.findAll().stream().filter(x -> x.getStatus().contains("Cancelled")).collect(Collectors.toList());
+    }
+    //To cancel the order
+    @PutMapping("/cancelOrder")
+    public String cancelOrder(@RequestBody OrderDetails orderDetails){
+        OrderDetails od=or.findById(orderDetails.getOrderId()).get();
+        od.setStatus("Cancelled");
+        or.save(od);
+        return "The order with ID -> "+orderDetails.getOrderId()+" is cancelled successfully";
     }
 
     /** Methods that are consumed exclusively by rest templates below this comment */

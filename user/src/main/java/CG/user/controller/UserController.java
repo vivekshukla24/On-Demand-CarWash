@@ -53,6 +53,11 @@ public class UserController {
     public OrderDetails updateOrder(@RequestBody OrderDetails orderDetails){
         return us.updateOrder(orderDetails);
     }
+    @PutMapping("/cancelOrder")
+    public String cancelOrder(@RequestBody OrderDetails orderDetails){
+        return us.cancelOrder(orderDetails);
+    }
+
 //    @DeleteMapping("/deleteOrder/{id}")
 //    public String deleteOrder(@PathVariable int id){
 //        return us.deleteOrder(id);

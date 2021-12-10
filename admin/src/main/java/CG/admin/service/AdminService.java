@@ -83,4 +83,9 @@ public class AdminService {
         OrderDetails[] pendingList = restTemplate.getForObject(url+"/findPending",OrderDetails[].class);
         return Arrays.asList(pendingList);
     }
+    //To see the cancelled orders
+    public List<OrderDetails> getCancelledOrders(){
+        OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findCancelled",OrderDetails[].class);
+        return Arrays.asList(cancelledList);
+    }
 }

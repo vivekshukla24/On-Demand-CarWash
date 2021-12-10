@@ -5,10 +5,7 @@ import CG.user.exceptionHandlers.API_requestException;
 import CG.user.model.OrderDetails;
 import CG.user.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
@@ -64,6 +61,8 @@ public class userService {
         }
     }
 
+
+
     /** Only the methods that use rest template are below this comment**/
 
     //To add an order from User-end
@@ -81,6 +80,13 @@ public class userService {
         HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails,headers);
         OrderDetails od = restTemplate.exchange(url+"/update", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
         return od;
+    }
+    public String cancelOrder(OrderDetails orderDetails){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<OrderDetails> cancelledOrder = new HttpEntity<>(orderDetails,headers);
+        ResponseEntity<String> response=restTemplate.exchange(url+"/cancelOrder",HttpMethod.PUT,cancelledOrder,String.class);
+        return response.getBody();
     }
 //    //To delete an Order from User-end
 //    public String deleteOrder(int id){
