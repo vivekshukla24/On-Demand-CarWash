@@ -1,6 +1,7 @@
 package CG.user.service;
 
 import CG.user.Repository.UserRepository;
+import CG.user.exceptionHandlers.API_requestException;
 import CG.user.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,14 @@ public class userService {
     }
     //To delete a user
     public String deleteUser(int id){
-        ur.deleteById(id);
-        return "User with ID "+id+" deleted successfully";
+        boolean doesUserExists=ur.existsById(id);
+        if(doesUserExists){
+            ur.deleteById(id);
+            return "User with ID "+id+" deleted successfully";
+        }
+        else {
+            throw new API_requestException("User not found, deletion failed");
+        }
     }
     //To update a user
     public UserDetails updateuser(UserDetails userDetails){

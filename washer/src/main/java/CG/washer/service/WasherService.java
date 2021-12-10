@@ -1,5 +1,6 @@
 package CG.washer.service;
 
+import CG.washer.exceptionHandlers.API_requestException;
 import CG.washer.model.WasherDetails;
 import CG.washer.repository.WasherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,14 @@ public class WasherService {
     }
     //To delete a washer
     public String deleteWasher(int id){
-        wr.deleteById(id);
-        return "Washer with "+id+" deleted successfully";
+        boolean doesWasherExists=wr.existsById(id);
+        if(doesWasherExists){
+            wr.deleteById(id);
+            return "Washer with "+id+" deleted successfully";
+        }
+        else {
+            throw new API_requestException("Washer not found, deletion failed");
+        }
     }
     //To update a washer
     public WasherDetails updateWasher(WasherDetails washerDetails){

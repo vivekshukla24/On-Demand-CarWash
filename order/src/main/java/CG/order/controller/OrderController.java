@@ -46,9 +46,8 @@ public class OrderController {
         OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
         existingOrder.setWasherName(orderDetails.getWasherName());
         existingOrder.setWashpackId(orderDetails.getWashpackId());
+        //Status can't be updated by the user
         existingOrder.setCars(orderDetails.getCars());
-        //Reserved for admin
-        //existingOrder.setStatus(orderDetails.getStatus());
         existingOrder.setPhoneNo(orderDetails.getPhoneNo());
         return or.save(existingOrder);
     }

@@ -20,7 +20,7 @@ public class UserController {
     private userService us;
 
     //Url to access the methods of Order Service
-    String url="http://localhost:8082/orders";
+    String url="http://localhost:9000/orders";
 
     //To get all the users
     @GetMapping("/findall")
@@ -47,11 +47,18 @@ public class UserController {
     public UserDetails updateuser(@RequestBody UserDetails userDetails){
         return us.updateuser(userDetails);
     }
-    //To add an order at User-end
+
+    /** Only the methods that use rest template are below this comment**/
+
+    //To add an order from User-end
     @PostMapping("/addOrder")
     public OrderDetails addOrder(@RequestBody OrderDetails orderDetails){
         HttpEntity<OrderDetails> addOrderbyUser = new HttpEntity<>(orderDetails);
         OrderDetails od=restTemplate.postForObject(url+"/add",addOrderbyUser,OrderDetails.class);
         return od;
     }
+//    @DeleteMapping("/deleteOrder/{id}")
+//    public String deleteOrder(@PathVariable int id){
+//
+//    }
 }

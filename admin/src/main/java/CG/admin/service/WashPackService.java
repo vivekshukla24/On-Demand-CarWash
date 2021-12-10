@@ -1,5 +1,6 @@
 package CG.admin.service;
 
+import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.WashPacks;
 import CG.admin.repository.WashPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,14 @@ public class WashPackService {
     }
     //To delete a WashPack
     public String deleteWashPack(int id){
-        wr.deleteById(id);
-        return "Wash Pack with "+id+" deleted Successfully";
+        boolean doesWPexists=wr.existsById(id);
+        if(doesWPexists){
+            wr.deleteById(id);
+            return "Wash Pack with "+id+" deleted Successfully";
+        }
+        else {
+            throw new API_requestException("WashPack not found, deletion failed");
+        }
     }
     //To update a WashPack
     public WashPacks updateWP(WashPacks washPacks){
@@ -37,5 +44,4 @@ public class WashPackService {
         existingWashPack.setDescription(washPacks.getDescription());
         return wr.save(existingWashPack);
     }
-
 }

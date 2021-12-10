@@ -1,5 +1,6 @@
 package CG.admin.service;
 
+import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.AdminDetails;
 import CG.admin.model.OrderDetails;
 import CG.admin.repository.AdminRepo;
@@ -39,8 +40,14 @@ public class AdminService {
     }
     //To delete an admin
     public String deleteAdmin(int id){
-        ar.deleteById(id);
-        return "Admin with ID "+id+" deleted successfully";
+        boolean doesAdminExists=ar.existsById(id);
+        if(doesAdminExists) {
+            ar.deleteById(id);
+            return "Admin with ID " + id + " deleted successfully";
+        }
+        else {
+            throw new API_requestException("Admin not found, deletion failed");
+        }
     }
     //To update an admin
     public AdminDetails updateAdmin(AdminDetails adminDetails){
@@ -51,6 +58,7 @@ public class AdminService {
     }
 
     /** Only the methods that return to rest templates are below this comment**/
+
     //To update the status of the order
     public OrderDetails updateStatus(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
