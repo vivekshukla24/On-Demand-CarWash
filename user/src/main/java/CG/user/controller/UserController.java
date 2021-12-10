@@ -4,10 +4,7 @@ import CG.user.model.OrderDetails;
 import CG.user.model.UserDetails;
 import CG.user.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
 
 @RestController
@@ -15,12 +12,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private RestTemplate restTemplate;
-    @Autowired
     private userService us;
-
-    //Url to access the methods of Order Service
-    String url="http://localhost:9000/orders";
 
     //To get all the users
     @GetMapping("/findall")
@@ -53,12 +45,16 @@ public class UserController {
     //To add an order from User-end
     @PostMapping("/addOrder")
     public OrderDetails addOrder(@RequestBody OrderDetails orderDetails){
-        HttpEntity<OrderDetails> addOrderbyUser = new HttpEntity<>(orderDetails);
-        OrderDetails od=restTemplate.postForObject(url+"/add",addOrderbyUser,OrderDetails.class);
-        return od;
+        return us.addOrder(orderDetails);
+    }
+    //To update and order from User-end
+    //This won't update the status of order
+    @PutMapping("/updateOrder")
+    public OrderDetails updateOrder(@RequestBody OrderDetails orderDetails){
+        return us.updateOrder(orderDetails);
     }
 //    @DeleteMapping("/deleteOrder/{id}")
 //    public String deleteOrder(@PathVariable int id){
-//
+//        return us.deleteOrder(id);
 //    }
 }

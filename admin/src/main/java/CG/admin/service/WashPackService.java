@@ -14,7 +14,7 @@ public class WashPackService {
     private WashPackRepo wr;
 
     //To add a WashPack
-    public WashPacks addWashPack(WashPacks washPacks){
+    public WashPacks addWP(WashPacks washPacks){
         return wr.save(washPacks);
     }
     //To find all washpacks
@@ -26,22 +26,28 @@ public class WashPackService {
         return wr.findById(id).get();
     }
     //To delete a WashPack
-    public String deleteWashPack(int id){
+    public String deleteWP(int id){
         boolean doesWPexists=wr.existsById(id);
         if(doesWPexists){
             wr.deleteById(id);
             return "Wash Pack with "+id+" deleted Successfully";
         }
         else {
-            throw new API_requestException("WashPack not found, deletion failed");
+            throw new API_requestException("WashPack not found in database, deletion failed");
         }
     }
     //To update a WashPack
     public WashPacks updateWP(WashPacks washPacks){
-        WashPacks existingWashPack=wr.findById(washPacks.getId()).orElse(null);
-        existingWashPack.setCost(washPacks.getCost());
-        existingWashPack.setName(washPacks.getName());
-        existingWashPack.setDescription(washPacks.getDescription());
-        return wr.save(existingWashPack);
+        boolean doesWPexists=wr.existsById(washPacks.getId());
+        if(doesWPexists){
+            WashPacks existingWashPack=wr.findById(washPacks.getId()).orElse(null);
+            existingWashPack.setCost(washPacks.getCost());
+            existingWashPack.setName(washPacks.getName());
+            existingWashPack.setDescription(washPacks.getDescription());
+            return wr.save(existingWashPack);
+        }
+        else {
+            throw new API_requestException("WashPack not found in database, update request failed");
+        }
     }
 }

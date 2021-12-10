@@ -6,6 +6,7 @@ import CG.order.repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/orders")
@@ -43,19 +44,44 @@ public class OrderController {
     //To update an order
     @PutMapping("/update")
     public OrderDetails updateOrder(@RequestBody OrderDetails orderDetails){
-        OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
-        existingOrder.setWasherName(orderDetails.getWasherName());
-        existingOrder.setWashpackId(orderDetails.getWashpackId());
-        //Status can't be updated by the user
-        existingOrder.setCars(orderDetails.getCars());
-        existingOrder.setPhoneNo(orderDetails.getPhoneNo());
-        return or.save(existingOrder);
+        boolean doesOrderExist=or.existsById(orderDetails.getOrderId());
+        if(doesOrderExist){
+            OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
+            existingOrder.setWasherName(orderDetails.getWasherName());
+            existingOrder.setWashpackId(orderDetails.getWashpackId());
+            //Status can't be updated by the user
+            existingOrder.setCars(orderDetails.getCars());
+            existingOrder.setPhoneNo(orderDetails.getPhoneNo());
+            return or.save(existingOrder);
+        }
+        else {
+            throw new API_requestException("Order not found in database, update request failed");
+        }
+
     }
+    /** Getting consumed by the Washer model */
+    //To find all the completed orders
+    @GetMapping("/findCompleted")
+    public List<OrderDetails> getCompletedOrders(){
+         return or.findAll().stream().filter(x -> x.getStatus().contains("Completed")).collect(Collectors.toList());
+    }
+    @GetMapping("/findPending")
+    public List<OrderDetails> getPendingOrders(){
+        return or.findAll().stream().filter(x -> x.getStatus().contains("Pending")).collect(Collectors.toList());
+    }
+
+    /** Methods that are consumed exclusively by rest templates below this comment */
     //This is called by Admin to update the status of the order
     @PutMapping("/updateStatus")
     public OrderDetails updateStatus(@RequestBody OrderDetails orderDetails){
-        OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
-        existingOrder.setStatus(orderDetails.getStatus());
-        return or.save(existingOrder);
+        boolean doesOrderExists=or.existsById(orderDetails.getOrderId());
+        if (doesOrderExists){
+            OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
+            existingOrder.setStatus(orderDetails.getStatus());
+            return or.save(existingOrder);
+        }
+        else {
+            throw new API_requestException("Order not found in database, status not updated");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package CG.washer.controller;
 
+import CG.washer.model.OrderDetails;
 import CG.washer.model.WasherDetails;
 import CG.washer.service.WasherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,17 @@ public class WasherController {
     @PutMapping("/updateWasher")
     public WasherDetails updateWasher(@RequestBody WasherDetails washerDetails){
         return wr.updateWasher(washerDetails);
+    }
+
+    /** Only the methods that consume rest template are below this comment **/
+    //To see the completed orders
+    @GetMapping("/completedOrders")
+    public List<OrderDetails> getCompletedOrders(){
+        return wr.getCompletedOrders();
+    }
+    //To see the pending orders
+    @GetMapping("/pendingOrders")
+    public List<OrderDetails> getPendingOrders(){
+        return wr.getPendingOrders();
     }
 }

@@ -1,14 +1,24 @@
 package CG.washer.service;
 
 import CG.washer.exceptionHandlers.API_requestException;
+import CG.washer.model.OrderDetails;
 import CG.washer.model.WasherDetails;
 import CG.washer.repository.WasherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class WasherService {
+    @Autowired
+    private RestTemplate restTemplate;
+
+    //Url to access the methods of Order Service
+    //Provided with the Port of Gateway API
+    String url="http://localhost:9000/orders";
 
     @Autowired
     WasherRepository wr;
@@ -38,10 +48,27 @@ public class WasherService {
     }
     //To update a washer
     public WasherDetails updateWasher(WasherDetails washerDetails){
-        WasherDetails existingWasher = wr.findById(washerDetails.getId()).orElse(null);
-        existingWasher.setName(washerDetails.getName());
-        existingWasher.setPassword(washerDetails.getPassword());
-        return wr.save(existingWasher);
+        boolean doesWasherExists=wr.existsById(washerDetails.getId());
+        if(doesWasherExists){
+            WasherDetails existingWasher = wr.findById(washerDetails.getId()).orElse(null);
+            existingWasher.setName(washerDetails.getName());
+            existingWasher.setPassword(washerDetails.getPassword());
+            return wr.save(existingWasher);
+        }
+        else {
+            throw new API_requestException("Washer not found in database, update failed");
+        }
     }
-    //To send the receipt to user
+
+    /** Only the methods that use rest template are below this comment **/
+    //To see the completed orders
+    public List<OrderDetails> getCompletedOrders(){
+        OrderDetails[] completedList = restTemplate.getForObject(url+"/findCompleted",OrderDetails[].class);
+        return Arrays.asList(completedList);
+    }
+    //To see the pending orders
+    public List<OrderDetails> getPendingOrders(){
+        OrderDetails[] pendingList = restTemplate.getForObject(url+"/findPending",OrderDetails[].class);
+        return Arrays.asList(pendingList);
+    }
 }

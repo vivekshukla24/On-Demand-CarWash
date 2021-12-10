@@ -2,8 +2,9 @@ package CG.admin.controller;
 
 import CG.admin.model.AdminDetails;
 import CG.admin.model.OrderDetails;
-import CG.admin.repository.RatingRepo;
+import CG.admin.model.WashPacks;
 import CG.admin.service.AdminService;
+import CG.admin.service.WashPackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -15,8 +16,9 @@ public class AdminController{
     @Autowired
     AdminService as;
     @Autowired
-    private RatingRepo rr;
+    WashPackService wps;
 
+    //These are all the admin model controls
     @GetMapping("/findallAdmins")
     public List<AdminDetails> findallAdmins() {
         return as.findallAdmins();
@@ -38,7 +40,25 @@ public class AdminController{
         return as.updateAdmin(adminDetails);
     }
 
-    /** Only the methods that use rest template are below this comment**/
+    //These are all the WashPacks Controls
+    @GetMapping("/findallWP")
+    public List<WashPacks> findallWP(){
+        return wps.findallWP();
+    }
+    @GetMapping("/findoneWP/{id}")
+    public WashPacks findoneWP(@PathVariable int id){
+        return wps.findoneWP(id);
+    }
+    @PostMapping("/addWP")
+    public WashPacks addWP(@RequestBody WashPacks washPacks){
+        return wps.addWP(washPacks);
+    }
+    @DeleteMapping("/deleteWP/{id}")
+    public String deleteWP(@PathVariable int id){
+        return wps.deleteWP(id);
+    }
+
+    /** Only the methods that use rest template are below this comment **/
 
     /** The status of the order can be either pending or completed **/
     @PutMapping("/updateStatus")
