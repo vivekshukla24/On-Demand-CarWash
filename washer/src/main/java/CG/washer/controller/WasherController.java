@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/** This Controller has two permanent washers that should not be deleted
+ * WasherDetails(1,"Joel","joel123")
+ * WasherDetails(2,"Kenny","kenny345")
+ * Both will be used to test wrapper classes for washer and rating integration */
+
+
 @RestController
 @RequestMapping("/washers")
 public class WasherController {
@@ -22,6 +28,10 @@ public class WasherController {
     @GetMapping("/findoneWasher/{id}")
     public WasherDetails findoneWasher(@PathVariable int id){
         return wr.findoneWasher(id);
+    }
+    @GetMapping("/findbyname/{name}")
+    public WasherDetails findbyname(@PathVariable String name){
+        return wr.findOnebyName(name);
     }
     //To add a new Washer
     @PostMapping("/addWasher")

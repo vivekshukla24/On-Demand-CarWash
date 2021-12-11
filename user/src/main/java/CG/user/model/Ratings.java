@@ -1,4 +1,4 @@
-package CG.admin.model;
+package CG.user.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +11,7 @@ public class Ratings {
     //This will work as a foreign key to get all the ratings of specific washer
     String washerName;
     String comments;
+    //Rating should be out of 10
     int Rating;
 
     //Default Constructor

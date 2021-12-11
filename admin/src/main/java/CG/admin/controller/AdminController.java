@@ -3,6 +3,7 @@ package CG.admin.controller;
 import CG.admin.model.AdminDetails;
 import CG.admin.model.OrderDetails;
 import CG.admin.model.WashPacks;
+import CG.admin.model.WasherRatings;
 import CG.admin.service.AdminService;
 import CG.admin.service.WashPackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,9 +85,22 @@ public class AdminController{
         return as.getPendingOrders();
     }
 
+    //To see the cancelled orders
     @GetMapping("/cancelledOrders")
     public List<OrderDetails> getCancelledOrders(){
         return as.getCancelledOrders();
+    }
+
+    //To delete the order from admin's end
+    @DeleteMapping("/deleteOrder/{id}")
+    public String deleteOrder(@PathVariable int id){
+        return as.deleteOrder(id);
+    }
+
+    //To get the details of Washers with all their reviews
+    @GetMapping("/washerRating/{name}")
+    public WasherRatings washerSpecificRatings(@PathVariable String name){
+        return as.washerSpecificRatings(name);
     }
 }
 

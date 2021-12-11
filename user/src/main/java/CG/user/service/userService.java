@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 public class userService {
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -61,8 +62,6 @@ public class userService {
         }
     }
 
-
-
     /** Only the methods that use rest template are below this comment**/
 
     //To add an order from User-end
@@ -81,6 +80,7 @@ public class userService {
         OrderDetails od = restTemplate.exchange(url+"/update", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
         return od;
     }
+    //To cancel the Order from user end
     public String cancelOrder(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -88,9 +88,4 @@ public class userService {
         ResponseEntity<String> response=restTemplate.exchange(url+"/cancelOrder",HttpMethod.PUT,cancelledOrder,String.class);
         return response.getBody();
     }
-//    //To delete an Order from User-end
-//    public String deleteOrder(int id){
-//        String response=restTemplate.exchange(url+"/delete/"+id);
-//        return response;
-//    }
 }

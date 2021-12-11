@@ -1,7 +1,9 @@
 package CG.user.controller;
 
 import CG.user.model.OrderDetails;
+import CG.user.model.Ratings;
 import CG.user.model.UserDetails;
+import CG.user.service.RatingsService;
 import CG.user.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ public class UserController {
 
     @Autowired
     private userService us;
+    @Autowired
+    private RatingsService rs;
 
     //To get all the users
     @GetMapping("/findall")
@@ -40,7 +44,24 @@ public class UserController {
         return us.updateuser(userDetails);
     }
 
-    /** Only the methods that use rest template are below this comment**/
+    /** Only User-end Rating controls below this **/
+    //To add a rating from User-end
+    @PostMapping("/addRating")
+    public Ratings addRating(Ratings ratings){
+        return rs.addRating(ratings);
+    }
+    //For user to see ratings to decide the service
+    @GetMapping("/getallRatings")
+    public List<Ratings> getallratings(){
+        return rs.getallRatings();
+    }
+    //For user to check a washer's history to make informed decision
+    @GetMapping("/washerSpecificRating/{washerName}")
+    public List<Ratings> washerSpecificRating(@PathVariable String washerName){
+        return rs.washerSpecific(washerName);
+    }
+
+    /** Only the methods that call rest-template methods from services are below this comment**/
 
     //To add an order from User-end
     @PostMapping("/addOrder")
@@ -53,13 +74,9 @@ public class UserController {
     public OrderDetails updateOrder(@RequestBody OrderDetails orderDetails){
         return us.updateOrder(orderDetails);
     }
+    //To cancel the Order from user end
     @PutMapping("/cancelOrder")
     public String cancelOrder(@RequestBody OrderDetails orderDetails){
         return us.cancelOrder(orderDetails);
     }
-
-//    @DeleteMapping("/deleteOrder/{id}")
-//    public String deleteOrder(@PathVariable int id){
-//        return us.deleteOrder(id);
-//    }
 }

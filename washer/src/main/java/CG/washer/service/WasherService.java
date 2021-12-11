@@ -7,7 +7,6 @@ import CG.washer.repository.WasherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class WasherService {
     @Autowired
     WasherRepository wr;
 
-    //To find all users
+    //To find all washers
     public List<WasherDetails> findallWashers(){
         return wr.findAll();
     }
@@ -34,6 +33,11 @@ public class WasherService {
     //To add a new Washer
     public WasherDetails addWasher(WasherDetails washerDetails) {
         return wr.save(washerDetails);
+    }
+    //To get Washer by name
+    public WasherDetails findOnebyName(String name){
+        WasherDetails wd=wr.findAll().stream().filter(x -> x.getName().contains(name)).findFirst().get();
+        return wd;
     }
     //To delete a washer
     public String deleteWasher(int id){

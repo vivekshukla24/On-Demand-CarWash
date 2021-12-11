@@ -1,14 +1,11 @@
 package CG.admin.service;
 
+import CG.admin.WrapperModel.WasherDetails;
 import CG.admin.exceptionHandlers.API_requestException;
-import CG.admin.model.AdminDetails;
-import CG.admin.model.OrderDetails;
+import CG.admin.model.*;
 import CG.admin.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
@@ -22,6 +19,10 @@ public class AdminService {
     //Url to access the methods of Order Service
     //Provided with the Port of Gateway API
     String url="http://localhost:9000/orders";
+    //Url to access the methods of User Service
+    String url2="http://localhost:9000/users";
+    //Url to access the methods of User Service
+    String url3="http://localhost:9000/washers";
 
     @Autowired
     private AdminRepo ar;
@@ -72,7 +73,6 @@ public class AdminService {
         OrderDetails[] od= restTemplate.getForObject(url+"/findall", OrderDetails[].class);
         return Arrays.asList(od);
     }
-
     //To see the completed orders
     public List<OrderDetails> getCompletedOrders(){
         OrderDetails[] completedList = restTemplate.getForObject(url+"/findCompleted",OrderDetails[].class);
@@ -88,4 +88,19 @@ public class AdminService {
         OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findCancelled",OrderDetails[].class);
         return Arrays.asList(cancelledList);
     }
+    //To delete an Order from Admin's-end
+    public String deleteOrder(int id){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<OrderDetails> deleteOrder = new HttpEntity<>(headers);
+        ResponseEntity<String> response=restTemplate.exchange(url+"/delete/"+id,HttpMethod.DELETE,deleteOrder,String.class);
+        return response.getBody();
+    }
+    //To get the details of Washers with all their reviews
+    public WasherRatings washerSpecificRatings(String washerName){
+        WasherDetails wd=restTemplate.getForObject(url3+"/findbyname/"+washerName,WasherDetails.class);
+        Ratings[] ratingsList=restTemplate.getForObject(url2+"/washerSpecificRating/"+washerName,Ratings[].class);
+        return new WasherRatings(wd,Arrays.asList(ratingsList));
+    }
+
 }
