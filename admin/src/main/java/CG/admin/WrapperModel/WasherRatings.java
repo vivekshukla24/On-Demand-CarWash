@@ -1,6 +1,7 @@
-package CG.admin.model;
+package CG.admin.WrapperModel;
 
-import CG.admin.WrapperModel.WasherDetails;
+import CG.admin.model.Ratings;
+import CG.admin.model.WasherDetails;
 
 import java.util.List;
 //This is a wrapper class to get ratings of specific washer

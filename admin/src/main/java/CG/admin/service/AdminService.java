@@ -1,6 +1,7 @@
 package CG.admin.service;
 
-import CG.admin.WrapperModel.WasherDetails;
+import CG.admin.WrapperModel.WasherRatings;
+import CG.admin.model.WasherDetails;
 import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.*;
 import CG.admin.repository.AdminRepo;

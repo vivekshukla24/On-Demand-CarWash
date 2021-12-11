@@ -3,7 +3,7 @@ package CG.admin.controller;
 import CG.admin.model.AdminDetails;
 import CG.admin.model.OrderDetails;
 import CG.admin.model.WashPacks;
-import CG.admin.model.WasherRatings;
+import CG.admin.WrapperModel.WasherRatings;
 import CG.admin.service.AdminService;
 import CG.admin.service.WashPackService;
 import org.springframework.beans.factory.annotation.Autowired;
