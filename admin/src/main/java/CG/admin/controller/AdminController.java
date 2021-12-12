@@ -1,8 +1,6 @@
 package CG.admin.controller;
 
-import CG.admin.model.AdminDetails;
-import CG.admin.model.OrderDetails;
-import CG.admin.model.WashPacks;
+import CG.admin.model.*;
 import CG.admin.WrapperModel.WasherRatings;
 import CG.admin.service.AdminService;
 import CG.admin.service.WashPackService;
@@ -41,67 +39,79 @@ public class AdminController{
         return as.updateAdmin(adminDetails);
     }
 
-    //These are all the WashPacks Controls
+    /** Washer controls through admin using service object */
+    //To find all the washpack
     @GetMapping("/findallWP")
     public List<WashPacks> findallWP(){
         return wps.findallWP();
     }
+    //To find one WashPack with ID
     @GetMapping("/findoneWP/{id}")
     public WashPacks findoneWP(@PathVariable int id){
         return wps.findoneWP(id);
     }
+    //To add a new WashPack
     @PostMapping("/addWP")
     public WashPacks addWP(@RequestBody WashPacks washPacks){
         return wps.addWP(washPacks);
     }
+    //To delete a Washpack
     @DeleteMapping("/deleteWP/{id}")
     public String deleteWP(@PathVariable int id){
         return wps.deleteWP(id);
     }
+    //To update a Washpack
     @PutMapping("/updateWP")
     public WashPacks updateWP(@RequestBody WashPacks washPacks){
         return wps.updateWP(washPacks);
     }
 
-    /** Only the methods that use rest template are below this comment **/
 
+    /** Only the methods that use rest template are below this comment */
+    //To get the list of all users
+    public List<UserDetails> getAllUsers(){
+        return as.getAllUsers();
+    }
+
+    /** Order controls through admin using rest template */
     //The status of the order can be either pending or completed
     @PutMapping("/updateStatus")
     public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
        return as.updateStatus(orderDetails);
     }
-
-    /** To get all the orders using rest template from Order Microservice **/
+    // To get all the orders using rest template from Order Microservice
     @GetMapping("/allOrders")
     public List<OrderDetails> getallOrders(){
         return as.getallOrders();
     }
-
     //To see the completed orders
     @GetMapping("/completedOrders")
     public List<OrderDetails> getCompletedOrders(){
         return as.getCompletedOrders();
     }
-
     //To see the pending orders
     @GetMapping("/pendingOrders")
     public List<OrderDetails> getPendingOrders(){
         return as.getPendingOrders();
     }
-
     //To see the cancelled orders
     @GetMapping("/cancelledOrders")
     public List<OrderDetails> getCancelledOrders(){
         return as.getCancelledOrders();
     }
-
     //To delete the order from admin's end
     @DeleteMapping("/deleteOrder/{id}")
     public String deleteOrder(@PathVariable int id){
         return as.deleteOrder(id);
     }
 
+    /** Washer controls through admin using rest template */
     //To get the details of Washers with all their reviews
+    @GetMapping("/allWashers")
+    public List<WasherDetails> getAllWashers(){
+        return as.getAllWashers();
+    }
+    //To get all the ratings of a specific Washer
     @GetMapping("/washerRating/{name}")
     public WasherRatings washerSpecificRatings(@PathVariable String name){
         return as.washerSpecificRatings(name);

@@ -59,8 +59,16 @@ public class AdminService {
         return ar.save(existingAdmin);
     }
 
-    /** Only the methods that return to rest templates are below this comment**/
+    /** Only the methods that return to rest templates are below this comment */
 
+    /** User controls through admin using rest template */
+    //To get all the users
+    public List<UserDetails> getAllUsers(){
+        UserDetails[] userDetailList=restTemplate.getForObject(url2+"/findall",UserDetails[].class);
+        return Arrays.asList(userDetailList);
+    }
+
+    /** Order controls through admin using rest template*/
     //To update the status of the order
     public OrderDetails updateStatus(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
@@ -97,8 +105,16 @@ public class AdminService {
         ResponseEntity<String> response=restTemplate.exchange(url+"/delete/"+id,HttpMethod.DELETE,deleteOrder,String.class);
         return response.getBody();
     }
+
+    /** Washer controls through admin using rest template*/
+    //To get the list of all the washers using rest template
+    public List<WasherDetails> getAllWashers(){
+        WasherDetails[] washerDetailList=restTemplate.getForObject(url3+"/findallWasher",WasherDetails[].class);
+        return Arrays.asList(washerDetailList);
+    }
     //To get the details of Washers with all their reviews
     public WasherRatings washerSpecificRatings(String washerName){
+        //Using a wrapper class here to get 2 json in one
         WasherDetails wd=restTemplate.getForObject(url3+"/findbyname/"+washerName,WasherDetails.class);
         Ratings[] ratingsList=restTemplate.getForObject(url2+"/washerSpecificRating/"+washerName,Ratings[].class);
         return new WasherRatings(wd,Arrays.asList(ratingsList));
