@@ -58,6 +58,10 @@ public class AdminController{
     public String deleteWP(@PathVariable int id){
         return wps.deleteWP(id);
     }
+    @PutMapping("/updateWP")
+    public WashPacks updateWP(@RequestBody WashPacks washPacks){
+        return wps.updateWP(washPacks);
+    }
 
     /** Only the methods that use rest template are below this comment **/
 

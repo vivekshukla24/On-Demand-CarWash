@@ -1,5 +1,6 @@
 package CG.user.controller;
 
+import CG.user.WrapperModel.OrderReceipt;
 import CG.user.model.OrderDetails;
 import CG.user.model.Ratings;
 import CG.user.model.UserDetails;
@@ -78,5 +79,9 @@ public class UserController {
     @PutMapping("/cancelOrder")
     public String cancelOrder(@RequestBody OrderDetails orderDetails){
         return us.cancelOrder(orderDetails);
+    }
+    @GetMapping("/getReceipt/{id}")
+    public OrderReceipt getReceipt(@PathVariable int id){
+       return us.getReceipt(id);
     }
 }

@@ -33,7 +33,8 @@ public class AdminApplication implements CommandLineRunner {
 			ar.save(new AdminDetails(1,"dummy","dummy"));
 		}
 		if(wpr.findAll().isEmpty()){
-			wpr.save(new WashPacks(1,"dummy",000,"desc"));
+			wpr.save(new WashPacks(1,"All clean pack",2500,"Interior cleaning, Exterior cleaning, Mats cleaning, polishing"));
+			wpr.save(new WashPacks(2,"Selective Pack",1500,"Interior cleaning, Exterior cleaning"));
 		}
 	}
 }

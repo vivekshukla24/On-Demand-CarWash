@@ -1,9 +1,11 @@
 package CG.user.service;
 
 import CG.user.Repository.UserRepository;
+import CG.user.WrapperModel.OrderReceipt;
 import CG.user.exceptionHandlers.API_requestException;
 import CG.user.model.OrderDetails;
 import CG.user.model.UserDetails;
+import CG.user.model.WashPacks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,11 @@ public class userService {
     @Autowired
     private RestTemplate restTemplate;
 
-    //Url to access the methods of Order Service
     //Provided with the Port of Gateway API
+    //Url to access the methods of Order Service
     String url="http://localhost:9000/orders";
+    //Url to access the methods of admin Service
+    String url1="http://localhost:9000/admins";
     @Autowired
     private UserRepository ur;
 
@@ -87,5 +91,17 @@ public class userService {
         HttpEntity<OrderDetails> cancelledOrder = new HttpEntity<>(orderDetails,headers);
         ResponseEntity<String> response=restTemplate.exchange(url+"/cancelOrder",HttpMethod.PUT,cancelledOrder,String.class);
         return response.getBody();
+    }
+    //To get the receipt of the order after order is completed
+    public OrderReceipt getReceipt(int id){
+        OrderDetails od=restTemplate.getForObject(url+"/findone/"+id,OrderDetails.class);
+        WashPacks wp=restTemplate.getForObject(url1+"/findoneWP/"+od.getWashpackId(),WashPacks.class);
+        if(od.getStatus().contains("Completed")){
+           int cars_count= (int) od.getCars().stream().count();
+            return new OrderReceipt(id,od.getWasherName(),wp,"You had "+cars_count+" cars in total so your payable amount is :- ",cars_count* wp.getCost());
+        }
+        else{
+            throw new API_requestException("Your order with ID -> "+id+" is still pending");
+        }
     }
 }
