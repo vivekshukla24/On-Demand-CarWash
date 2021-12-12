@@ -29,3 +29,8 @@ with the following tools.
 - 7 DB models - 1 Embedded Document
 - 2 Wrapper models
 - 7 Repositories
+
+### Websites for swagger UI's for three Microservice Entities
+- Admin Service -> http://localhost:8081/swagger-ui.html
+- User Service -> http://localhost:8083/swagger-ui.html
+- Washer Service -> http://localhost:8085/swagger-ui.html
