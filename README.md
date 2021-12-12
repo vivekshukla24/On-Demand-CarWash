@@ -10,7 +10,6 @@ with the following tools.
 - Swagger API
 
 ## Microservices
-
 - Admin Service - Port 8081
 - Order Service - Port 8082
 - User Service - Port 8083
@@ -23,3 +22,10 @@ with the following tools.
 - Washer DB
 - Ratings DB
 - WashPacks DB
+
+### Some Details
+- 3 Entities (Those microservices that act as front-end interact with methods)
+- 4 Unique Microservices
+- 7 DB models - 1 Embedded Document
+- 2 Wrapper models
+- 7 Repositories
