@@ -57,11 +57,10 @@ public class AdminApplication implements CommandLineRunner {
 				"https://github.com/vivekshukla24",
 				Collections.emptyList());
 	}
-
 	@Override
 	public void run(String... args) throws Exception {
 		if(ar.findAll().isEmpty()){
-			ar.save(new AdminDetails(1,"dummy","dummy"));
+			ar.save(new AdminDetails(1,"Vivek Shukla","vivek123@"));
 		}
 		if(wpr.findAll().isEmpty()){
 			wpr.save(new WashPacks(1,"All clean pack",2500,"Interior cleaning, Exterior cleaning, Mats cleaning, polishing"));
