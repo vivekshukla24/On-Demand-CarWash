@@ -35,9 +35,11 @@ public class UserApplicationTests {
 				new UserDetails(9, "Aditya","Delhi","ady123"),
 				new UserDetails(8, "Saurav","Bangalore","saurav123"),
 				new UserDetails(7, "Gaurav","Chennai","Gaurav123"),
-				new UserDetails(6, "Gautam,","Kerala","gtm123")
+				new UserDetails(6, "Gautam,","Kerala","gtm123"),
+				new UserDetails(5, "Ayush","Delhi","ayu123"),
+				new UserDetails(4, "Robin","Bangalore","rob123")
 		).collect(Collectors.toList()));
-		assertEquals(4, us.findallUsers().size());
+		assertEquals(6, us.findallUsers().size());
 	}
 	@Test
 	public void saveUserTest() {
