@@ -26,8 +26,8 @@ with the following tools.
 ### Some Details
 - 3 Entities (Those microservices that act as front-end interact with methods)
 - 4 Unique Microservices (Mentioned in microservices section above)
-- 7 DB models - 1 Embedded Document
-- 2 Wrapper models
+- 7 DB models - 1 Embedded Document(Car)
+- 2 Wrapper models (OrderReceipt, WasherRatings)
 - 7 Repositories
 
 ### Websites for swagger UI's for three Microservice Entities
