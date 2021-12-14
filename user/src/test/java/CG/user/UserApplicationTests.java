@@ -1,6 +1,7 @@
 package CG.user;
 
 import CG.user.Repository.UserRepository;
+import CG.user.WrapperModel.OrderReceipt;
 import CG.user.exceptionHandlers.API_requestException;
 import CG.user.model.UserDetails;
 import CG.user.service.userService;
@@ -39,7 +40,7 @@ public class UserApplicationTests {
 				new UserDetails(5, "Ayush","Delhi","ayu123"),
 				new UserDetails(4, "Robin","Bangalore","rob123")
 		).collect(Collectors.toList()));
-		assertEquals(6, us.findallUsers().size());
+		assertEquals("This test case should return all users in database(Mock)",6, us.findallUsers().size());
 	}
 	@Test
 	public void saveUserTest() {
@@ -54,8 +55,14 @@ public class UserApplicationTests {
 	}
 	@Test
 	public void findOneUser(){
-		UserDetails user = new UserDetails(1, "Dummy name","Haryana","testPW");
-		when(ur.findById(user.getId())).thenReturn(java.util.Optional.of(user));
-		assertEquals("It should return the object with certain id",user,us.findoneUser(user.getId()));
+		UserDetails user1 = new UserDetails(1, "Dummy name","Haryana","testPW");
+		UserDetails user2 = new UserDetails(9, "Aditya","Delhi","ady123");
+		UserDetails user3 =	new UserDetails(8, "Saurav","Bangalore","saurav123");
+		UserDetails user4 =	new UserDetails(7, "Gaurav","Chennai","Gaurav123");
+		UserDetails user5 =	new UserDetails(6, "Gautam,","Kerala","gtm123");
+		UserDetails user6 =	new UserDetails(5, "Ayush","Delhi","ayu123");
+		UserDetails user7 =	new UserDetails(4, "Robin","Bangalore","rob123");
+		when(ur.findById(user1.getId())).thenReturn(java.util.Optional.of(user1));
+		assertEquals("It should return the object with certain id",user1,us.findoneUser(user1.getId()));
 	}
 }

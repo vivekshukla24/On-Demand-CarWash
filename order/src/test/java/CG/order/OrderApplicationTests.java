@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import static org.junit.Assert.assertEquals;
@@ -81,6 +82,14 @@ public class OrderApplicationTests {
 	public void deleteUserTest() throws Exception{
 		OrderDetails MockOrder = new OrderDetails(3,"Kenny",3,86282223,"Cancelled", Arrays.asList(new Car(1,"BMW"),new Car(2,"Mercedes"), new Car(3,"Verna")));
 		oc.deleteOrder(MockOrder.getOrderId());
+	}
+
+	@Test
+	public void cancelOrderbySomeEntity(){
+		OrderDetails od=new OrderDetails(1,"Kenny",2,67356333,"Cancelled", Arrays.asList(new Car(1,"Honda")));
+		OrderDetails om=new OrderDetails(1,"Kenny",2,67356333,"Pending", Arrays.asList(new Car(1,"Honda")));
+		when(or.findById(od.getOrderId())).thenReturn(Optional.of(om));
+		assertEquals("The order with ID -> "+od.getOrderId()+" is cancelled successfully",oc.cancelOrder(od));
 	}
 
 }

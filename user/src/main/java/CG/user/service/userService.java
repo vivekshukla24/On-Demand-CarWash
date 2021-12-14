@@ -74,7 +74,6 @@ public class userService {
         OrderDetails od=restTemplate.postForObject(url+"/add",addOrderbyUser,OrderDetails.class);
         return od;
     }
-
     //To update an order from User-end
     //This won't update the status of order
     public OrderDetails updateOrder(OrderDetails orderDetails){
