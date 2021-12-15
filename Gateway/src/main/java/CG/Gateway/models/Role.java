@@ -11,10 +11,17 @@ public class Role {
     @Id
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
+    private String role;
 
+    public Role() {
+    }
+
+    public Role(String id, String role) {
+        this.id = id;
+        this.role = role;
+    }
 
     //Getter and Setters
-    private String role;
     public String getId() {
         return id;
     }

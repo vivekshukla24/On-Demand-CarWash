@@ -21,8 +21,19 @@ public class User {
     @DBRef
     private Set<Role> roles;
 
+    //Default Constructor
+    public User() {
+    }
 
-
+    //Constructor
+    public User(String id, String email, String password, String fullname, boolean enabled, Set<Role> roles) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
 
     //Getter and Setters
     public String getId() {
