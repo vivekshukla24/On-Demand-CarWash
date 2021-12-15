@@ -18,11 +18,11 @@ public class AdminService {
     private RestTemplate restTemplate;
 
     //Url to access the methods of Order Service
-    //Provided with the Port of Gateway API
+    //Provided with the Port of API-Gateway
     String url="http://localhost:9000/orders";
     //Url to access the methods of User Service
     String url2="http://localhost:9000/users";
-    //Url to access the methods of User Service
+    //Url to access the methods of Washer Service
     String url3="http://localhost:9000/washers";
 
     @Autowired

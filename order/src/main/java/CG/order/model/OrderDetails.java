@@ -27,6 +27,7 @@ public class OrderDetails {
     public OrderDetails(){
     }
 
+    //Constructor
     public OrderDetails(int orderId, String washerName, int washpackId, int phoneNo, String status, List<Car> cars) {
         this.orderId = orderId;
         this.washerName = washerName;

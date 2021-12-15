@@ -19,14 +19,15 @@ public class userService {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private UserRepository ur;
 
     //Provided with the Port of Gateway API
     //Url to access the methods of Order Service
     String url="http://localhost:9000/orders";
     //Url to access the methods of admin Service
     String url1="http://localhost:9000/admins";
-    @Autowired
-    private UserRepository ur;
+
 
     //To get all the users
     public List<UserDetails> findallUsers(){

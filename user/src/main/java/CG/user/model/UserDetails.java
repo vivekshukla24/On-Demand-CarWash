@@ -1,9 +1,7 @@
 package CG.user.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotEmpty;
-
 import org.springframework.data.annotation.Id;
 
 @Document(collection="userdata")
@@ -21,6 +19,7 @@ public class UserDetails {
     @NotEmpty(message = "Password can't be empty")
     String password;
 
+    //Getter and Setters
     public int getId() {
         return id;
     }
