@@ -8,6 +8,7 @@ with the following tools.
 - Eureka Discovery Server - Port 8761
 - API-Gateway - Port 9000
 - Swagger API
+- Spring Security
 
 ## Microservices
 - Admin Service - Port 8081
