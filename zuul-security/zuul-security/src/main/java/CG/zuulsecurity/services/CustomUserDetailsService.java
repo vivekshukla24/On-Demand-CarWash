@@ -42,7 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	    Iterator i=user.getRoles().iterator();
 		if(user.getRoles().size()==0)
 		{
-			Role userRole = roleRepository.findByRole("ADMIN");
+			Role userRole = roleRepository.findByRole("USER");
 			user.setRoles((new HashSet<>(Arrays.asList(userRole))));
 		}
 	    while (i.hasNext()) {   
