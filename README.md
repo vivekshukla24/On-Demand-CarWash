@@ -6,14 +6,15 @@ with the following tools.
 - IntelliJ IDEA Community edition 2021.2.3
 - MongoDB Atlas
 - Eureka Discovery Server - Port 8761
-- API-Gateway - Port 9000
+- Zuul Gateway-API - Port 9000
 - Swagger API
-- Spring Security
+- Spring Security (JWT Tokens)
 
 ## Microservices
 - Admin Service - Port 8081
 - Order Service - Port 8082
 - User Service - Port 8083
+- Payment Service - Port 8084
 - Washer Service - Port 8085
 
 ### Mongo Databases
