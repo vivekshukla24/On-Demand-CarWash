@@ -19,11 +19,11 @@ public class AdminService {
 
     //Url to access the methods of Order Service
     //Provided with the Port of API-Gateway
-    String url="http://localhost:9000/orders";
+    String url="http://ORDER-SERVICE/orders";
     //Url to access the methods of User Service
-    String url2="http://localhost:9000/users";
+    String url2="http://USER-SERVICE/users";
     //Url to access the methods of Washer Service
-    String url3="http://localhost:9000/washers";
+    String url3="http://WASHER-SERVICE/washers";
 
     @Autowired
     private AdminRepo ar;
