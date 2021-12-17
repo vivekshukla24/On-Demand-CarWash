@@ -16,8 +16,7 @@ public class WasherService {
     private RestTemplate restTemplate;
 
     //Url to access the methods of Order Service
-    //Provided with the Port of Gateway API
-    String url="http://localhost:9000/orders";
+    String url="http://ORDER-SERVICE/orders";
 
     @Autowired
     WasherRepository wr;

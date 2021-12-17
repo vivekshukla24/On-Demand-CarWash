@@ -18,7 +18,6 @@ public class AdminService {
     private RestTemplate restTemplate;
 
     //Url to access the methods of Order Service
-    //Provided with the Port of API-Gateway
     String url="http://ORDER-SERVICE/orders";
     //Url to access the methods of User Service
     String url2="http://USER-SERVICE/users";

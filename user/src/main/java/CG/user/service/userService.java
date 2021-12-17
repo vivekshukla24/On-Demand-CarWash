@@ -22,11 +22,10 @@ public class userService {
     @Autowired
     private UserRepository ur;
 
-    //Provided with the Port of Gateway API
     //Url to access the methods of Order Service
-    String url="http://localhost:9000/orders";
+    String url="http://ORDER-SERVICE/orders";
     //Url to access the methods of admin Service
-    String url1="http://localhost:9000/admins";
+    String url1="http://ADMIN-SERVICE/admins";
 
 
     //To get all the users
