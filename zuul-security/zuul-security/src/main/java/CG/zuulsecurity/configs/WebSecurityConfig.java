@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 
 	}
-	
+	//The method where we filter accessible methods with their role
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	    http.httpBasic().disable().csrf().disable().sessionManagement()
