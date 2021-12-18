@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)   [![HitCount](http://hits.dwyl.com/vivekshukla24/https://githubcom/vivekshukla24/On-Demand-CarWashgit.svg?style=flat)](http://hits.dwyl.com/vivekshukla24/https://githubcom/vivekshukla24/On-Demand-CarWashgit)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)     [![HitCount](http://hits.dwyl.com/vivekshukla24/https://githubcom/vivekshukla24/On-Demand-CarWashgit.svg?style=flat-square)](http://hits.dwyl.com/vivekshukla24/https://githubcom/vivekshukla24/On-Demand-CarWashgit)
 # On Demand Car Wash
 
 This a on demand car wash service made using microservice architecture
