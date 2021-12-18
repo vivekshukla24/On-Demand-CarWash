@@ -37,7 +37,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public void saveUser(User user) {
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	    user.setEnabled(true);
-	    //Role userRole = roleRepository.findByRole("ADMIN");
 	    System.out.println(user.getRoles());
 	    Iterator i=user.getRoles().iterator();
 		if(user.getRoles().size()==0)
@@ -74,7 +73,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 				}
 			}
         }
-	    //user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 	    userRepository.save(user);
 	    System.out.println(user);
 	}
@@ -87,7 +85,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
 	        return buildUserForAuthentication(user, authorities);
 	    } else {
-	        throw new UsernameNotFoundException("username not found");
+	        throw new UsernameNotFoundException("Username not found in database");
 	    }
 	}
 	
