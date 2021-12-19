@@ -96,6 +96,11 @@ public class AdminService {
         OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findCancelled",OrderDetails[].class);
         return Arrays.asList(cancelledList);
     }
+    //To see the Unassigned orders
+    public List<OrderDetails> getUnassignedOrders(){
+        OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findUnassigned",OrderDetails[].class);
+        return Arrays.asList(cancelledList);
+    }
     //To delete an Order from Admin's-end
     public String deleteOrder(int id){
         HttpHeaders headers = new HttpHeaders();
@@ -104,7 +109,6 @@ public class AdminService {
         ResponseEntity<String> response=restTemplate.exchange(url+"/delete/"+id,HttpMethod.DELETE,deleteOrder,String.class);
         return response.getBody();
     }
-
     /** Washer controls through admin using rest template*/
     //To get the list of all the washers using rest template
     public List<WasherDetails> getAllWashers(){

@@ -4,6 +4,7 @@ import CG.washer.model.OrderDetails;
 import CG.washer.model.WasherDetails;
 import CG.washer.service.WasherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -63,5 +64,9 @@ public class WasherController {
     @GetMapping("/cancelledOrders")
     public List<OrderDetails> getCancelledOrders(){
         return wr.getCancelledOrders();
+    }
+    @GetMapping("/findUnassigned")
+    public List<OrderDetails> getUnassignedOrders(){
+        return wr.getUnassignedOrders();
     }
 }

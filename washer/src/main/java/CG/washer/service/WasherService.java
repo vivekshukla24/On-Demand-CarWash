@@ -79,4 +79,9 @@ public class WasherService {
         OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findCancelled",OrderDetails[].class);
         return Arrays.asList(cancelledList);
     }
+    //To see the Unassigned orders
+    public List<OrderDetails> getUnassignedOrders(){
+        OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findUnassigned",OrderDetails[].class);
+        return Arrays.asList(cancelledList);
+    }
 }

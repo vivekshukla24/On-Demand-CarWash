@@ -75,6 +75,11 @@ public class OrderController {
     public List<OrderDetails> getCancelledOrders(){
         return or.findAll().stream().filter(x -> x.getStatus().contains("Cancelled")).collect(Collectors.toList());
     }
+    //To find all the unassigned orders
+    @GetMapping("/findUnassigned")
+    public List<OrderDetails> getUnassignedOrders(){
+        return or.findAll().stream().filter(x -> x.getWasherName().contains("NA")).collect(Collectors.toList());
+    }
     //To cancel the order
     @PutMapping("/cancelOrder")
     public String cancelOrder(@RequestBody OrderDetails orderDetails){

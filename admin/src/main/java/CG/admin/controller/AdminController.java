@@ -99,7 +99,7 @@ public class AdminController{
     public List<OrderDetails> getCancelledOrders(){
         return as.getCancelledOrders();
     }
-    //To delete the order from admin's end
+    //To delete the order from admin's-end
     @DeleteMapping("/deleteOrder/{id}")
     public String deleteOrder(@PathVariable int id){
         return as.deleteOrder(id);
@@ -115,6 +115,10 @@ public class AdminController{
     @GetMapping("/washerRating/{name}")
     public WasherRatings washerSpecificRatings(@PathVariable String name){
         return as.washerSpecificRatings(name);
+    }
+    @GetMapping("/findUnassigned")
+    public List<OrderDetails> getUnassignedOrders(){
+        return as.getUnassignedOrders();
     }
 }
 
