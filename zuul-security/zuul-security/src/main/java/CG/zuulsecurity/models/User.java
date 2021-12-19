@@ -19,9 +19,10 @@ public class User {
     private String password;
     private String fullname;
     private boolean enabled;
+
+    //Dbref facilitates the input of roles by using only ID
     @DBRef
     private Set<Role> roles= new HashSet<>();
-
 
     //Getter and Setters
     public String getId() {

@@ -16,6 +16,8 @@ import java.util.List;
 public class AdminService {
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private AdminRepo ar;
 
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
@@ -24,8 +26,6 @@ public class AdminService {
     //Url to access the methods of Washer Service
     String url3="http://WASHER-SERVICE/washers";
 
-    @Autowired
-    private AdminRepo ar;
 
     //To get all admins
     public List<AdminDetails> findallAdmins(){

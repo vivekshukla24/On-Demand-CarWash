@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
     @Autowired
     private userService us;
     @Autowired
     private RatingsService rs;
+
     //To get all the users
     @GetMapping("/findall")
     public List<UserDetails> findallUsers(){
