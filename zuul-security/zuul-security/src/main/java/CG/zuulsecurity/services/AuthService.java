@@ -3,7 +3,6 @@ package CG.zuulsecurity.services;
 import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +25,11 @@ public class AuthService {
     //To get all Washers
     public List<User> getAllWashers(){
         return ur.findAll().stream().filter(x -> x.getRoles().contains("61baf84c7b90032c48127fae")).collect(Collectors.toList());
+    }
+    //This method will be consumed by 3-entity microservices using rest template
+    //To find a specific User of any role using ID
+    public User getSpecificUser(String Id){
+        return ur.findById(Id).orElse(null);
     }
 
 }
