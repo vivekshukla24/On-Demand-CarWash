@@ -10,8 +10,9 @@ public class Role {
     @Id
     private String id;
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
-
     private String role;
+
+    //Getter and Setters
     public String getId() {
         return id;
     }
@@ -24,9 +25,12 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", role=" + role + "]";
-	}
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id='" + id + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

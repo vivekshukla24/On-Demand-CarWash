@@ -62,14 +62,20 @@ public class User {
         this.roles = roles;
     }
 
-    //Default Constructed
+    //Default Constructor
     public User() {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullname=" + fullname
-				+ ", enabled=" + enabled + ", roles=" + roles + "]";
-	}
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
+    }
 }
