@@ -91,5 +91,17 @@ public class OrderApplicationTests {
 		when(or.findById(od.getOrderId())).thenReturn(Optional.of(om));
 		assertEquals("The order with ID -> "+od.getOrderId()+" is cancelled successfully",oc.cancelOrder(od));
 	}
+	@Test
+	public void UnassignedOrderTest(){
+		when(or.findAll()).thenReturn(Stream.of(
+				new OrderDetails(1,"NA",2,67356333,"Pending", Arrays.asList(new Car(1,"Honda"))),
+				new OrderDetails(2,"NA",2,7233838,"Pending", Arrays.asList(new Car(1,"Hyundai"), new Car(2,"Skoda"))),
+				new OrderDetails(3,"Kenny",3,86282223,"Cancelled", Arrays.asList(new Car(1,"BMW"),new Car(2,"Mercedes"), new Car(3,"Verna"))),
+				new OrderDetails(5,"Joel",1,34624443,"Completed", Arrays.asList(new Car(1,"Honda"))),
+				new OrderDetails(6,"Kenny",2,935324443,"Completed", Arrays.asList(new Car(1,"Maruti"))),
+				new OrderDetails(7,"Kenny",3,264324443,"Cancelled", Arrays.asList(new Car(1,"Grand i10")))
+		).collect(Collectors.toList()));
+		assertEquals(2,oc.getUnassignedOrders().size());
+	}
 
 }

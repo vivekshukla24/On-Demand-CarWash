@@ -37,9 +37,10 @@ public class WasherApplicationTests {
 		WasherDetails washer2 = new WasherDetails(2, "Kenny","2342stPW");
 		WasherDetails washer3 = new WasherDetails(3, "Manuel","t4545W");
 		WasherDetails washer4 = new WasherDetails(4, "James","teew44");
-		when(wr.findAll()).thenReturn(Stream.of(washer1,washer2).collect(Collectors.toList()));
+		when(wr.findAll()).thenReturn(Stream.of(washer1,washer2,washer3,washer4).collect(Collectors.toList()));
 		assertEquals(washer2,ws.findOnebyName("Kenny"));
 		assertEquals(washer1,ws.findOnebyName("Joel"));
-		assertEquals(washer3,ws.findOnebyName("James"));
+		assertEquals(washer3,ws.findOnebyName("Manuel"));
 	}
+
 }

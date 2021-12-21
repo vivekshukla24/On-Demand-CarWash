@@ -3,9 +3,11 @@ package CG.zuulsecurity.services;
 import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class AuthService {
     @Autowired
     private UserRepository ur;
