@@ -4,7 +4,7 @@
   "password": "q1w2we3r4"
 }
 
--> For Registering as User
+-> For Registering as User(Role will be handled by code for User)
 {
   "email": "admin@example.com",
   "password": "q1w2e3r4",
@@ -12,12 +12,26 @@
   "enabled": true
 }
 
+-> For Registering as any other role
+{
+  "email": "admin@example.com",
+  "password": "q1w2e3r4",
+  "fullname": "Example Admin",
+  "enabled": true
+  "roles":[
+     {
+        "role":"YOURROLE"
+     }
+  ]
+}
+
+<----------------------------------------------------------->
 -> Structure of a [Washer] on DB
 {
   "email": "washer@provider.com",
   "password": "password",
   "fullname": "Example washer",
-  "enabled": true
+  "enabled": true,
   "roles":[
      {
         "$ref":"roles",
@@ -34,7 +48,7 @@
   "email": "admin@provider.com",
   "password": "password",
   "fullname": "Example admin",
-  "enabled": true
+  "enabled": true,
   "roles":[
      {
         "$ref":"roles",
