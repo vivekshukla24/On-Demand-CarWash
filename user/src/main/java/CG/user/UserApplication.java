@@ -25,7 +25,6 @@ import java.util.Collections;
 @EnableSwagger2
 @SpringBootApplication
 public class UserApplication implements CommandLineRunner {
-
 	@Autowired
 	private UserRepository ur;
 	@Autowired

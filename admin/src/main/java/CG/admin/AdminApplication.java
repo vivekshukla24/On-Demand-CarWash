@@ -28,6 +28,7 @@ public class AdminApplication implements CommandLineRunner {
 	private AdminRepo ar;
 	@Autowired
 	private WashPackRepo wpr;
+
 	@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate() {

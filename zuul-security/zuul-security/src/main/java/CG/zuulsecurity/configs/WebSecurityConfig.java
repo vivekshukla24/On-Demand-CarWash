@@ -19,7 +19,6 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
 	@Autowired
 	JwtTokenProvider jwtTokenProvider;
 	
