@@ -17,7 +17,7 @@
   "email": "admin@example.com",
   "password": "q1w2e3r4",
   "fullname": "Example Admin",
-  "enabled": true
+  "enabled": true,
   "roles":[
      {
         "role":"YOURROLE"

@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /** This Controller has two permanent washers that should not be deleted
- * WasherDetails(1,"Joel","joel123")
- * WasherDetails(2,"Kenny","kenny345")
+ * WasherDetails(joel@gmail.com,"Joel","joel123")
+ * WasherDetails(kenny@gmail.com,"Kenny","kenny345")
+ * * WasherDetails(james@gmail.com,"James","james987")
  * Both will be used to test wrapper classes for washer and rating integration */
 
 
