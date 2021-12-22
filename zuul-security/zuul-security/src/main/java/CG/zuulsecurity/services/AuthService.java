@@ -5,7 +5,6 @@ import CG.zuulsecurity.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AuthService {
@@ -16,22 +15,19 @@ public class AuthService {
     public List<User> getAllUser(){
         return ur.findAll();
     }
-    //To get all Admins
-    public List<User> getAllAdmins(){
-        return ur.findAll().stream().filter(x -> x.getRoles().contains("61ba26a735c79a10aca1ded0")).collect(Collectors.toList());
-    }
-    //To get all Users
-    public List<User> getAllUsers(){
-        return ur.findAll().stream().filter(x -> x.getRoles().contains("61baf82f7b90032c48127fac")).collect(Collectors.toList());
-    }
-    //To get all Washers
-    public List<User> getAllWashers(){
-        return ur.findAll().stream().filter(x -> x.getRoles().contains("61baf84c7b90032c48127fae")).collect(Collectors.toList());
-    }
     //This method will be consumed by 3-entity microservices using rest template
-    //To find a specific User of any role using ID
-    public User getSpecificUser(String Id){
-        return ur.findById(Id).orElse(null);
+    //To find a user of any role using name
+    public User getSpecificUser(String name){
+        return ur.findAll().stream().filter(x -> x.getFullname().contains(name)).findFirst().get();
     }
-
+    public String deleteUser(String id){
+        boolean doesAdminExists=ur.existsById(id);
+        if(doesAdminExists) {
+            ur.deleteById(id);
+            return "Admin with ID " + id + " deleted successfully";
+        }
+        else {
+            return "User with ID "+ id +" Not found deletion failed";
+        }
+    }
 }
