@@ -2,8 +2,8 @@ package CG.admin.WrapperModel;
 
 import CG.admin.model.Ratings;
 import CG.admin.model.WasherDetails;
-
 import java.util.List;
+
 //This is a wrapper class to get ratings of specific washer
 public class WasherRatings {
     private WasherDetails washerName;

@@ -114,7 +114,7 @@ public class AdminController{
     //To get all the ratings of a specific Washer
     @GetMapping("/washerRating/{name}")
     public WasherRatings washerSpecificRatings(@PathVariable String name){
-        return as.washerSpecificRatings(name);
+        return as.washerSpecificRating(name);
     }
     @GetMapping("/findUnassigned")
     public List<OrderDetails> getUnassignedOrders(){

@@ -27,6 +27,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	private RoleRepository roleRepository;
 	@Autowired
+	private AuthService as;
+	@Autowired
 	private PasswordEncoder bCryptPasswordEncoder;
 	
 	public User findUserByEmail(String email) {
