@@ -1,7 +1,6 @@
 package CG.washer.controller;
 
 import CG.washer.model.OrderDetails;
-import CG.washer.model.User;
 import CG.washer.model.WasherDetails;
 import CG.washer.service.WasherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /** This Controller has two permanent washers that should not be deleted
- * WasherDetails(joel@gmail.com,"Joel","joel123")
- * WasherDetails(kenny@gmail.com,"Kenny","kenny345")
- * * WasherDetails(james@gmail.com,"James","james987")
+ * -> WasherDetails(joel@gmail.com,"Joel","joel123")
+ * -> WasherDetails(kenny@gmail.com,"Kenny","kenny345")
+ * -> WasherDetails(james@gmail.com,"James","james987")
  * Both will be used to test wrapper classes for washer and rating integration */
 
 
@@ -22,10 +21,10 @@ public class WasherController {
     @Autowired
     WasherService wr;
 
-    //To get Washer by Full name
+
     @GetMapping("/findbyname/{name}")
-    public User findbyname(@PathVariable String name){
-        return wr.findoneWasher(name);
+    public WasherDetails findbyname(@PathVariable String name){
+        return wr.findOnebyName(name);
     }
     //To delete a washer
     @DeleteMapping("/deleteWasher/{id}")
@@ -49,10 +48,12 @@ public class WasherController {
     public List<OrderDetails> getPendingOrders(){
         return wr.getPendingOrders();
     }
+    //To see the cancelled orders
     @GetMapping("/cancelledOrders")
     public List<OrderDetails> getCancelledOrders(){
         return wr.getCancelledOrders();
     }
+    //To see the Unassigned orders
     @GetMapping("/findUnassigned")
     public List<OrderDetails> getUnassignedOrders(){
         return wr.getUnassignedOrders();

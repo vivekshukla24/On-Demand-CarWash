@@ -7,7 +7,7 @@ with the following tools.
 - IntelliJ IDEA Community edition 2021.2.3
 - MongoDB Atlas
 - Eureka Discovery Server - Port 8761
-- Zuul Gateway-API - Port 9000
+- Zuul Gateway-API - Port 9000 (2 RestControllers)
 - Swagger API
 - Spring Security (JWT Tokens)
 
@@ -17,21 +17,20 @@ with the following tools.
 - User Service - Port 8083
 - Payment Service - Port 8084
 - Washer Service - Port 8085
+- Management Service - Port 9000
 
 ### Mongo Databases
-- AdminDetails DB
-- User DB
+- AuthDB
+- Roles DB
 - Order DB - Embedded Document of Car model
-- Washer DB
 - Ratings DB
 - WashPacks DB
 
 ### Some Details
 - 3 Entities (Those microservices that act as front-end interact with methods)
-- 4 Unique Microservices (Mentioned in microservices section above)
-- 7 DB models - 1 Embedded Document(Car)
+- 6 Unique Microservices (Mentioned in microservices section above)
+- 5 DB models - 2 Embedded Document(Car,Role)
 - 2 Wrapper models (OrderReceipt, WasherRatings)
-- 7 Repositories
 
 ### Websites for swagger UI's for three Microservice Entities
 - Admin Service -> http://localhost:8081/swagger-ui.html

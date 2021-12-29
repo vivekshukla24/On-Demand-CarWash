@@ -27,6 +27,8 @@ public class OrderController {
     //To add an order
     @PostMapping("/add")
     public OrderDetails addOrder(@RequestBody OrderDetails order) {
+        //Every Order at conception will be pending
+        order.setStatus("Pending");
         return or.save(order);
     }
     //To delete specific order with id
@@ -59,7 +61,7 @@ public class OrderController {
         }
     }
 
-    /** Getting consumed by the Washer model */
+    /** Getting consumed by the Washer and Admin model */
     //To find all the completed orders
     @GetMapping("/findCompleted")
     public List<OrderDetails> getCompletedOrders(){

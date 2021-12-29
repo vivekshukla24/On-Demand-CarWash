@@ -2,7 +2,6 @@ package CG.washer.service;
 
 import CG.washer.exceptionHandlers.API_requestException;
 import CG.washer.model.OrderDetails;
-import CG.washer.model.User;
 import CG.washer.model.WasherDetails;
 import CG.washer.repository.WasherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +17,21 @@ public class WasherService {
 
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
-    //Url to access the methods of Zuul Service
-    String url2="http://ZUUL-SECURITY/manage";
 
     @Autowired
     WasherRepository wr;
 
     //Washer can't find all washers so the "all-method" will be vacant
 
-    //To find one washer with FullName
-    public User findoneWasher(String name){
-        User ud=restTemplate.getForObject(url2+"/userByName/"+name,User.class);
-        return ud;
+    //To find one washer with ID
+    public WasherDetails findoneWasher(int id){
+        return wr.findById(id).get();
+    }
+
+    //To get Washer by name
+    public WasherDetails findOnebyName(String name){
+        WasherDetails wd=wr.findAll().stream().filter(x -> x.getName().contains(name)).findFirst().get();
+        return wd;
     }
     //To delete a washer
     public String deleteWasher(int id){

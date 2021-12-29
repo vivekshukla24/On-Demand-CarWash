@@ -19,7 +19,7 @@ public class UserController {
     private RatingsService rs;
 
 
-    //To add a car
+    //To find a user
     @GetMapping("/findoneuser/{id}")
     public UserDetails findoneUser(@PathVariable int id){
         return us.findoneUser(id);

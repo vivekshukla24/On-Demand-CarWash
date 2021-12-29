@@ -4,6 +4,7 @@ import CG.user.Repository.UserRepository;
 import CG.user.WrapperModel.OrderReceipt;
 import CG.user.exceptionHandlers.API_requestException;
 import CG.user.model.OrderDetails;
+import CG.user.model.User;
 import CG.user.model.UserDetails;
 import CG.user.model.WashPacks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import java.util.List;
 
 @Service
 public class userService {
-
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
@@ -24,15 +24,15 @@ public class userService {
 
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
-    //Url to access the methods of admin Service
-    String url1="http://ADMIN-SERVICE/admins";
+    //Url to access the methods of Zuul Service
+    String url2="http://ZUUL-SECURITY/manage";
 
 
     //User can't find all Users so the all method will be vacant
 
     //To find a user by id
-    public UserDetails findoneUser(int id){
-        return ur.findById(id).get();
+    public User findUser(String name){
+        User user=restTemplate.getForObject(url2+"/")
     }
 
     //To delete a user

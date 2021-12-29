@@ -1,7 +1,6 @@
 package CG.admin.service;
 
 import CG.admin.WrapperModel.WasherRatings;
-import CG.admin.model.WasherDetails;
 import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.*;
 import CG.admin.repository.AdminRepo;
@@ -62,9 +61,8 @@ public class AdminService {
         return ar.save(existingAdmin);
     }
 
-    /** Only the methods that return to rest templates are below this comment */
-
-    /** User controls through admin using rest template */
+    /** 1) Only the methods that respond to rest templates are below this comment
+        2) User controls through admin using rest template */
     //To get all the users
     public List<User> getAllUsers(){
         User[] userDetailList=restTemplate.getForObject(url4+"/users/"+"USER",User[].class);
@@ -83,7 +81,12 @@ public class AdminService {
     //To get all the orders
     public List<OrderDetails> getallOrders(){
         OrderDetails[] od= restTemplate.getForObject(url+"/findall", OrderDetails[].class);
-        return Arrays.asList(od);
+        if(Arrays.asList(od).isEmpty()){
+            throw new API_requestException("There are no orders in the DB");
+        }
+        else {
+            return Arrays.asList(od);
+        }
     }
     //To see the completed orders
     public List<OrderDetails> getCompletedOrders(){
