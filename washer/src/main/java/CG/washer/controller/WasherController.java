@@ -21,11 +21,7 @@ public class WasherController {
     @Autowired
     WasherService wr;
 
-    //To find all users
-    @GetMapping("/findallWasher")
-    public List<WasherDetails> findallWashers(){
-        return wr.findallWashers();
-    }
+
     //To find one washer with ID
     @GetMapping("/findoneWasher/{id}")
     public WasherDetails findoneWasher(@PathVariable int id){
@@ -34,11 +30,6 @@ public class WasherController {
     @GetMapping("/findbyname/{name}")
     public WasherDetails findbyname(@PathVariable String name){
         return wr.findOnebyName(name);
-    }
-    //To add a new Washer
-    @PostMapping("/addWasher")
-    public WasherDetails addWasher(@RequestBody WasherDetails washerDetails) {
-        return wr.addWasher(washerDetails);
     }
     //To delete a washer
     @DeleteMapping("/deleteWasher/{id}")

@@ -18,20 +18,11 @@ public class UserController {
     @Autowired
     private RatingsService rs;
 
-    //To get all the users
-    @GetMapping("/findall")
-    public List<UserDetails> findallUsers(){
-        return us.findallUsers();
-    }
+
     //To add a car
     @GetMapping("/findoneuser/{id}")
     public UserDetails findoneUser(@PathVariable int id){
         return us.findoneUser(id);
-    }
-    //To add a user
-    @PostMapping("/adduser")
-    public UserDetails addUser(@RequestBody UserDetails userDetails) {
-        return us.addUser(userDetails);
     }
     //To delete a user
     @DeleteMapping("/deleteuser/{id}")
