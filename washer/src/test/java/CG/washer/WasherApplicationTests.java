@@ -25,13 +25,6 @@ public class WasherApplicationTests {
 	WasherService ws;
 
 	@Test
-	public void findAllWashersTest() {
-		when(wr.findAll()).thenReturn(Stream.of(
-				new WasherDetails(1,"Joel","joel123"),
-				new WasherDetails(2,"Kenny","kenny345")).collect(Collectors.toList()));
-		assertEquals(2,ws.findallWashers().size());
-	}
-	@Test
 	public void findWashersByNAmeTest() {
 		WasherDetails washer1 = new WasherDetails(1, "Joel","4324tPW");
 		WasherDetails washer2 = new WasherDetails(2, "Kenny","2342stPW");

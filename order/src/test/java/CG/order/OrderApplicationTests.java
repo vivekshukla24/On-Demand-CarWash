@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -25,6 +26,13 @@ public class OrderApplicationTests {
 	OrderRepo or;
 	@Autowired
 	OrderController oc;
+
+	@Test
+	public void saveOrderTest() {
+		OrderDetails sent=new OrderDetails(2,"Kenny",2,7233838,"something", Arrays.asList(new Car(1,"Hyundai"), new Car(2,"Skoda")));
+		OrderDetails received=new OrderDetails(2,"NA",2,7233838,"Pending", Arrays.asList(new Car(1,"Hyundai"), new Car(2,"Skoda")));
+		assertNotSame(received,sent);
+	}
 
 	@Test
 	public void allOrdersTest() {
@@ -79,7 +87,7 @@ public class OrderApplicationTests {
 	}
 
 	@Test(expected = API_requestException.class)
-	public void deleteUserTest() throws Exception{
+	public void deleteOrderTest() throws Exception{
 		OrderDetails MockOrder = new OrderDetails(3,"Kenny",3,86282223,"Cancelled", Arrays.asList(new Car(1,"BMW"),new Car(2,"Mercedes"), new Car(3,"Verna")));
 		oc.deleteOrder(MockOrder.getOrderId());
 	}

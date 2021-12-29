@@ -27,8 +27,9 @@ public class OrderController {
     //To add an order
     @PostMapping("/add")
     public OrderDetails addOrder(@RequestBody OrderDetails order) {
-        //Every Order at conception will be pending
+        //Every Order at conception will be pending and unassigned
         order.setStatus("Pending");
+        order.setWasherName("NA");
         return or.save(order);
     }
     //To delete specific order with id
