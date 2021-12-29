@@ -19,7 +19,7 @@ public class AdminController{
 
     //These are all the admin model controls
     @GetMapping("/findallAdmins")
-    public List<AdminDetails> findallAdmins() {
+    public List<User> findallAdmins() {
         return as.findallAdmins();
     }
     @GetMapping("/findoneAdmin/{id}")

@@ -27,10 +27,6 @@ public class RepoController {
     public String deleteUser(@PathVariable String id){
         return as.deleteUser(id);
     }
-    @GetMapping("/allUsers")
-    public List<User> getUsers(){
-        return as.getUsers();
-    }
     @GetMapping("/users/{role}")
     public List<User> getUserByRole(@PathVariable String role){
         return as.findListbyRole(role);

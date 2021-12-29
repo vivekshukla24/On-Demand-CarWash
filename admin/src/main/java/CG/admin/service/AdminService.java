@@ -31,8 +31,9 @@ public class AdminService {
 
 
     //To get all admins
-    public List<AdminDetails> findallAdmins(){
-        return ar.findAll();
+    public List<User> findallAdmins(){
+        User[] AdminDetailList=restTemplate.getForObject(url4+"/users/"+"ADMIN",User[].class);
+        return (Arrays.asList(AdminDetailList));
     }
     //To find one admin
     public AdminDetails findoneAdmin(int id){
