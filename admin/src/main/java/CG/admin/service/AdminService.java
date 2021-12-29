@@ -5,6 +5,7 @@ import CG.admin.model.WasherDetails;
 import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.*;
 import CG.admin.repository.AdminRepo;
+import CG.admin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class AdminService {
     String url2="http://USER-SERVICE/users";
     //Url to access the methods of Washer Service
     String url3="http://WASHER-SERVICE/washers";
+    //Url to access the methods of Zuul Service
+    String url4="http://ZUUL-SECURITY/manage";
 
 
     //To get all admins
@@ -62,8 +65,8 @@ public class AdminService {
 
     /** User controls through admin using rest template */
     //To get all the users
-    public List<UserDetails> getAllUsers(){
-        UserDetails[] userDetailList=restTemplate.getForObject(url2+"/findall",UserDetails[].class);
+    public List<User> getAllUsers(){
+        User[] userDetailList=restTemplate.getForObject(url4+"/users/"+"USER",User[].class);
         return Arrays.asList(userDetailList);
     }
 
@@ -111,16 +114,17 @@ public class AdminService {
     }
     /** Washer controls through admin using rest template*/
     //To get the list of all the washers using rest template
-    public List<WasherDetails> getAllWashers(){
-        WasherDetails[] washerDetailList=restTemplate.getForObject(url3+"/findallWasher",WasherDetails[].class);
+    public List<User> getAllWashers(){
+        User[] washerDetailList=restTemplate.getForObject(url4+"/users/"+"WASHER",User[].class);
         return Arrays.asList(washerDetailList);
     }
     //To get the details of Washers with all their reviews
     public WasherRatings washerSpecificRatings(String washerName){
-        //Using a wrapper class here to get 2 json in one
-        WasherDetails wd=restTemplate.getForObject(url3+"/findbyname/"+washerName,WasherDetails.class);
+        //Using a wrapper-class here to get 2 json in one
+        User wd =restTemplate.getForObject(url4+"/userByName/"+washerName,User.class);
         Ratings[] ratingsList=restTemplate.getForObject(url2+"/washerSpecificRating/"+washerName,Ratings[].class);
-        return new WasherRatings(wd,Arrays.asList(ratingsList));
+        //Wrapping into a "Proxy class"
+        return new WasherRatings(wd.getId(),wd.getFullname(),wd.getEmail(),Arrays.asList(ratingsList));
     }
 
 }

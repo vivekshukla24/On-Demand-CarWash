@@ -69,7 +69,8 @@ public class AdminController{
 
     /** Only the methods that use rest template are below this comment */
     //To get the list of all users
-    public List<UserDetails> getAllUsers(){
+    @GetMapping("/allusers")
+    public List<User> getAllUsers(){
         return as.getAllUsers();
     }
 
@@ -108,13 +109,13 @@ public class AdminController{
     /** Washer controls through admin using rest template */
     //To get the details of Washers with all their reviews
     @GetMapping("/allWashers")
-    public List<WasherDetails> getAllWashers(){
+    public List<User> getAllWashers(){
         return as.getAllWashers();
     }
     //To get all the ratings of a specific Washer
     @GetMapping("/washerRating/{name}")
     public WasherRatings washerSpecificRatings(@PathVariable String name){
-        return as.washerSpecificRating(name);
+        return as.washerSpecificRatings(name);
     }
     @GetMapping("/findUnassigned")
     public List<OrderDetails> getUnassignedOrders(){

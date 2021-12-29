@@ -21,18 +21,13 @@ public class WasherService {
     @Autowired
     WasherRepository wr;
 
-    //To find all washers
-    public List<WasherDetails> findallWashers(){
-        return wr.findAll();
-    }
+    //Washer can't find all washers so the "all-method" will be vacant
+
     //To find one washer with ID
     public WasherDetails findoneWasher(int id){
         return wr.findById(id).get();
     }
-    //To add a new Washer
-    public WasherDetails addWasher(WasherDetails washerDetails) {
-        return wr.save(washerDetails);
-    }
+
     //To get Washer by name
     public WasherDetails findOnebyName(String name){
         WasherDetails wd=wr.findAll().stream().filter(x -> x.getName().contains(name)).findFirst().get();
@@ -81,7 +76,7 @@ public class WasherService {
     }
     //To see the Unassigned orders
     public List<OrderDetails> getUnassignedOrders(){
-        OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findUnassigned",OrderDetails[].class);
-        return Arrays.asList(cancelledList);
+        OrderDetails[] unassignedList = restTemplate.getForObject(url+"/findUnassigned",OrderDetails[].class);
+        return Arrays.asList(unassignedList);
     }
 }

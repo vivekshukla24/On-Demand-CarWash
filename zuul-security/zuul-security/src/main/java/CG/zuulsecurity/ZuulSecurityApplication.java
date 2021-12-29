@@ -15,11 +15,4 @@ public class ZuulSecurityApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZuulSecurityApplication.class, args);
 	}
-
-	@Bean
-	@LoadBalanced
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-
 }

@@ -28,18 +28,13 @@ public class userService {
     String url1="http://ADMIN-SERVICE/admins";
 
 
-    //To get all the users
-    public List<UserDetails> findallUsers(){
-        return ur.findAll();
-    }
+    //User can't find all Users so the all method will be vacant
+
     //To find a user by id
     public UserDetails findoneUser(int id){
         return ur.findById(id).get();
     }
-    //To add a user
-    public UserDetails addUser(UserDetails userDetails) {
-        return ur.save(userDetails);
-    }
+
     //To delete a user
     public String deleteUser(int id){
         boolean doesUserExists=ur.existsById(id);

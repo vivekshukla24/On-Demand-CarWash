@@ -55,7 +55,7 @@ public class AuthController {
             model.put("token", token);
             return ok(model);
         } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid email/password supplied");
+            throw new BadCredentialsException("Entered Email/Password is Invalid");
         }
     }
 
@@ -64,11 +64,11 @@ public class AuthController {
     public ResponseEntity register(@RequestBody User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-            throw new BadCredentialsException("User with username: " + user.getEmail() + " already exists");
+            throw new BadCredentialsException("User with the EmailID: " + user.getEmail() + " exists already");
         }
         userService.saveUser(user);
         Map<Object, Object> model = new HashMap<>();
-        model.put("message", "User registered successfully");
+        model.put("message", "User is registered successfully!!!!");
         return ok(model);
     }
 }
