@@ -80,6 +80,11 @@ public class AdminController{
     public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
        return as.updateStatus(orderDetails);
     }
+    //To assign a washer to the order by Admin
+    @PutMapping("/assignWasher")
+    public OrderDetails assignWasher(@RequestBody OrderDetails orderDetails){
+        return as.assignWasher(orderDetails);
+    }
     // To get all the orders using rest template from Order Microservice
     @GetMapping("/allOrders")
     public List<OrderDetails> getallOrders(){

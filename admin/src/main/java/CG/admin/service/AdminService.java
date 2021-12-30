@@ -78,6 +78,14 @@ public class AdminService {
         OrderDetails od = restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
         return od;
     }
+    //To assign a washer to the order by Admin
+    public OrderDetails assignWasher(OrderDetails orderDetails){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<OrderDetails> assignedWasher = new HttpEntity<>(orderDetails,headers);
+        OrderDetails od = restTemplate.exchange(url+"/assignWasher", HttpMethod.PUT,assignedWasher,OrderDetails.class).getBody();
+        return od;
+    }
     //To get all the orders
     public List<OrderDetails> getallOrders(){
         OrderDetails[] od= restTemplate.getForObject(url+"/findall", OrderDetails[].class);
