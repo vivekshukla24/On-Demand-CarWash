@@ -1,8 +1,6 @@
 package CG.admin;
 
-import CG.admin.model.AdminDetails;
 import CG.admin.model.WashPacks;
-import CG.admin.repository.AdminRepo;
 import CG.admin.repository.WashPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,8 +22,6 @@ import java.util.Collections;
 @EnableSwagger2
 @SpringBootApplication
 public class AdminApplication implements CommandLineRunner {
-	@Autowired
-	private AdminRepo ar;
 	@Autowired
 	private WashPackRepo wpr;
 
@@ -61,9 +57,6 @@ public class AdminApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... args) throws Exception {
-		if(ar.findAll().isEmpty()){
-			ar.save(new AdminDetails(1,"Vivek Shukla","vivek123@"));
-		}
 		if(wpr.findAll().isEmpty()){
 			wpr.save(new WashPacks(1,"All clean pack",2500,"Interior cleaning, Exterior cleaning, Mats cleaning, polishing"));
 			wpr.save(new WashPacks(2,"Selective Pack",1500,"Interior cleaning, Exterior cleaning"));

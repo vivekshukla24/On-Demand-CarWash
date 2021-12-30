@@ -17,27 +17,6 @@ public class AdminController{
     @Autowired
     WashPackService wps;
 
-    //These are all the admin model controls
-    @GetMapping("/findallAdmins")
-    public List<User> findallAdmins() {
-        return as.findallAdmins();
-    }
-    @GetMapping("/findoneAdmin/{id}")
-    public AdminDetails findoneAdmin(@PathVariable int id){
-        return as.findoneAdmin(id);
-    }
-    @PostMapping("/addAdmin")
-    public AdminDetails addAdmin(@RequestBody AdminDetails adminDetails){
-        return as.addAdmin(adminDetails);
-    }
-    @DeleteMapping("/deleteAdmin/{id}")
-    public String deleteAdmin(@PathVariable int id){
-        return as.deleteAdmin(id);
-    }
-    @PutMapping("/updateAdmin")
-    public AdminDetails updateAdmin(@RequestBody AdminDetails adminDetails){
-        return as.updateAdmin(adminDetails);
-    }
 
     /** Washer controls through admin using service object */
     //To find all the washpack

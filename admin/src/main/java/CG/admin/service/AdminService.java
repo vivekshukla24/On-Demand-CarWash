@@ -3,7 +3,6 @@ package CG.admin.service;
 import CG.admin.WrapperModel.WasherRatings;
 import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.*;
-import CG.admin.repository.AdminRepo;
 import CG.admin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -16,50 +15,13 @@ import java.util.List;
 public class AdminService {
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
-    private AdminRepo ar;
 
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
     //Url to access the methods of User Service
     String url2="http://USER-SERVICE/users";
-    //Url to access the methods of Washer Service
-    String url3="http://WASHER-SERVICE/washers";
     //Url to access the methods of Zuul Service
     String url4="http://ZUUL-SECURITY/manage";
-
-
-    //To get all admins
-    public List<User> findallAdmins(){
-        User[] AdminDetailList=restTemplate.getForObject(url4+"/users/"+"ADMIN",User[].class);
-        return (Arrays.asList(AdminDetailList));
-    }
-    //To find one admin
-    public AdminDetails findoneAdmin(int id){
-        return ar.findById(id).get();
-    }
-    //To add an admin
-    public AdminDetails addAdmin(AdminDetails adminDetails){
-        return ar.save(adminDetails);
-    }
-    //To delete an admin
-    public String deleteAdmin(int id){
-        boolean doesAdminExists=ar.existsById(id);
-        if(doesAdminExists) {
-            ar.deleteById(id);
-            return "Admin with ID " + id + " deleted successfully";
-        }
-        else {
-            throw new API_requestException("Admin not found, deletion failed");
-        }
-    }
-    //To update an admin
-    public AdminDetails updateAdmin(AdminDetails adminDetails){
-        AdminDetails existingAdmin= ar.findById(adminDetails.getId()).orElse(null);
-        existingAdmin.setName(adminDetails.getName());
-        existingAdmin.setPassword(adminDetails.getPassword());
-        return ar.save(existingAdmin);
-    }
 
     /** 1) Only the methods that respond to rest templates are below this comment
         2) User controls through admin using rest template */
@@ -75,16 +37,14 @@ public class AdminService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails,headers);
-        OrderDetails od = restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
-        return od;
+        return restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
     }
     //To assign a washer to the order by Admin
     public OrderDetails assignWasher(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<OrderDetails> assignedWasher = new HttpEntity<>(orderDetails,headers);
-        OrderDetails od = restTemplate.exchange(url+"/assignWasher", HttpMethod.PUT,assignedWasher,OrderDetails.class).getBody();
-        return od;
+        return restTemplate.exchange(url+"/assignWasher", HttpMethod.PUT,assignedWasher,OrderDetails.class).getBody();
     }
     //To get all the orders
     public List<OrderDetails> getallOrders(){
@@ -138,5 +98,4 @@ public class AdminService {
         //Wrapping into a "Proxy class"
         return new WasherRatings(wd.getId(),wd.getFullname(),wd.getEmail(),Arrays.asList(ratingsList));
     }
-
 }
