@@ -2,19 +2,13 @@ package CG.zuulsecurity.services;
 
 import CG.zuulsecurity.models.Role;
 import CG.zuulsecurity.models.User;
-import CG.zuulsecurity.refModel.UserDetails;
 import CG.zuulsecurity.repositories.RoleRepository;
 import CG.zuulsecurity.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.client.RestTemplate;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class AuthService {

@@ -8,11 +8,13 @@ public class OrderReceipt {
     private WashPacks washPack;
     private int PayableAmount;
     private String details;
+
     //Default Constructor
     public OrderReceipt(){
 
     }
 
+    //Constructor
     public OrderReceipt(int orderID, String washerName, WashPacks washPack,  String details, int payableAmount) {
         this.orderID = orderID;
         this.WasherName = washerName;
