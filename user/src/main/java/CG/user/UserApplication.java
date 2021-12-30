@@ -1,9 +1,7 @@
 package CG.user;
 
 import CG.user.Repository.RatingRepo;
-import CG.user.Repository.UserRepository;
 import CG.user.model.Ratings;
-import CG.user.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,15 +16,12 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import java.util.Collections;
 
 @EnableEurekaClient
 @EnableSwagger2
 @SpringBootApplication
 public class UserApplication implements CommandLineRunner {
-	@Autowired
-	private UserRepository ur;
 	@Autowired
 	private RatingRepo rr;
 
@@ -65,9 +60,6 @@ public class UserApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		if(ur.findAll().isEmpty()){
-			ur.save(new UserDetails(1,"dummy","dummy","dummy"));
-		}
 		if(rr.findAll().isEmpty()){
 			rr.save(new Ratings(1,"Kenny","Really good experience with kenny, my car is clean",8));
 			rr.save(new Ratings(2,"Kenny","Really good job on my car",9));

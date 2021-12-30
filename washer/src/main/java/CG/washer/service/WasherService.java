@@ -1,9 +1,6 @@
 package CG.washer.service;
 
-import CG.washer.exceptionHandlers.API_requestException;
 import CG.washer.model.OrderDetails;
-import CG.washer.model.WasherDetails;
-import CG.washer.repository.WasherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,46 +18,6 @@ public class WasherService {
 
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
-
-    @Autowired
-    WasherRepository wr;
-
-    //Washer can't find all washers so the "all-method" will be vacant
-
-    //To find one washer with ID
-    public WasherDetails findoneWasher(int id){
-        return wr.findById(id).get();
-    }
-
-    //To get Washer by name
-    public WasherDetails findOnebyName(String name){
-        WasherDetails wd=wr.findAll().stream().filter(x -> x.getName().contains(name)).findFirst().get();
-        return wd;
-    }
-    //To delete a washer
-    public String deleteWasher(int id){
-        boolean doesWasherExists=wr.existsById(id);
-        if(doesWasherExists){
-            wr.deleteById(id);
-            return "Washer with "+id+" deleted successfully";
-        }
-        else {
-            throw new API_requestException("Washer not found, deletion failed");
-        }
-    }
-    //To update a washer
-    public WasherDetails updateWasher(WasherDetails washerDetails){
-        boolean doesWasherExists=wr.existsById(washerDetails.getId());
-        if(doesWasherExists){
-            WasherDetails existingWasher = wr.findById(washerDetails.getId()).orElse(null);
-            existingWasher.setName(washerDetails.getName());
-            existingWasher.setPassword(washerDetails.getPassword());
-            return wr.save(existingWasher);
-        }
-        else {
-            throw new API_requestException("Washer not found in database, update failed");
-        }
-    }
 
     /** Only the methods that use rest template are below this comment **/
     //To see the completed orders

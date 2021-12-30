@@ -1,10 +1,8 @@
 package CG.washer.controller;
 
 import CG.washer.model.OrderDetails;
-import CG.washer.model.WasherDetails;
 import CG.washer.service.WasherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,22 +18,6 @@ import java.util.List;
 public class WasherController {
     @Autowired
     WasherService wr;
-
-
-    @GetMapping("/findbyname/{name}")
-    public WasherDetails findbyname(@PathVariable String name){
-        return wr.findOnebyName(name);
-    }
-    //To delete a washer
-    @DeleteMapping("/deleteWasher/{id}")
-    public String deleteWasher(@PathVariable int id){
-        return wr.deleteWasher(id);
-    }
-    //To update a washer
-    @PutMapping("/updateWasher")
-    public WasherDetails updateWasher(@RequestBody WasherDetails washerDetails){
-        return wr.updateWasher(washerDetails);
-    }
 
     /** Only the methods that consume rest template are below this comment **/
     //To see the completed orders

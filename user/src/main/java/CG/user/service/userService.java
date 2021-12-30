@@ -1,10 +1,8 @@
 package CG.user.service;
 
-import CG.user.Repository.UserRepository;
 import CG.user.WrapperModel.OrderReceipt;
 import CG.user.exceptionHandlers.API_requestException;
 import CG.user.model.OrderDetails;
-import CG.user.model.UserDetails;
 import CG.user.model.WashPacks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -13,13 +11,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-
 @Service
 public class userService {
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
-    private UserRepository ur;
+
 
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
@@ -44,8 +40,7 @@ public class userService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails,headers);
-        OrderDetails od = restTemplate.exchange(url+"/update", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
-        return od;
+        return restTemplate.exchange(url+"/update", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
     }
     //To cancel the Order from user end
     public String cancelOrder(OrderDetails orderDetails){
@@ -60,7 +55,7 @@ public class userService {
         OrderDetails od=restTemplate.getForObject(url+"/findone/"+id,OrderDetails.class);
         WashPacks wp=restTemplate.getForObject(url1+"/findoneWP/"+od.getWashpackId(),WashPacks.class);
         if(od.getStatus().contains("Completed")){
-           int cars_count= (int) od.getCars().stream().count();
+           int cars_count= od.getCars().size();
             return new OrderReceipt(id,od.getWasherName(),wp,"You had "+cars_count+" cars in total so your payable amount is :- ",cars_count* wp.getCost());
         }
         else{
