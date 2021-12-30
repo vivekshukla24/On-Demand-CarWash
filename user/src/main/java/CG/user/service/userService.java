@@ -11,7 +11,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
-
+import java.util.List;
 
 
 @Service
@@ -26,6 +26,15 @@ public class userService {
     //Url to access the methods of admin Service
     String url1="http://ADMIN-SERVICE/admins";
 
+    //Redundant methods for tests
+    //To add a user
+    public UserDetails addUser(UserDetails userDetails) {
+        return ur.save(userDetails);
+    }
+    //To get all the users
+    public List<UserDetails> findallUsers(){
+        return ur.findAll();
+    }
 
     //User can't find all Users so the all method will be vacant
 

@@ -58,4 +58,15 @@ public class WasherController {
     public List<OrderDetails> getUnassignedOrders(){
         return wr.getUnassignedOrders();
     }
+    //The status of the order can be either pending or completed
+    @PutMapping("/updateStatus")
+    public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
+        return wr.updateStatus(orderDetails);
+    }
+    //To assign a washer to the order by washer
+    @PutMapping("/assign")
+    public OrderDetails assignSelf(@RequestBody OrderDetails orderDetails){
+        return wr.assignSelf(orderDetails);
+    }
+
 }

@@ -111,5 +111,4 @@ public class OrderApplicationTests {
 		).collect(Collectors.toList()));
 		assertEquals(2,oc.getUnassignedOrders().size());
 	}
-
 }

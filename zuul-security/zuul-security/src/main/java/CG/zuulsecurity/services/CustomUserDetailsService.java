@@ -30,13 +30,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private AuthService as;
 	@Autowired
 	private PasswordEncoder bCryptPasswordEncoder;
-	
+
+	//To find a user with thier email
 	public User findUserByEmail(String email) {
 	    return userRepository.findByEmail(email);
 	}
 
 	//save user using his role
 	public void saveUser(User user) {
+		//Bcrypt is a one-way strong Hashing Function
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	    user.setEnabled(true);
 	    System.out.println(user.getRoles());
@@ -59,19 +61,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 				{
 					Role userRole = roleRepository.findByRole("ADMIN");
 					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-
 				}
 				else if(r.getRole().equals("WASHER"))
 				{
 					Role userRole = roleRepository.findByRole("WASHER");
 					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-
 				}
 				else
 				{
 					Role userRole = roleRepository.findByRole("USER");
 					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-
 				}
 			}
         }
@@ -96,7 +95,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	    userRoles.forEach((role) -> {
 	        roles.add(new SimpleGrantedAuthority(role.getRole()));
 	    });
-
 	    List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
 	    return grantedAuthorities;
 	}

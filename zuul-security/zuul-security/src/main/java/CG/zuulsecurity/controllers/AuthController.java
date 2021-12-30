@@ -1,10 +1,8 @@
 package CG.zuulsecurity.controllers;
 
 import static org.springframework.http.ResponseEntity.ok;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import CG.zuulsecurity.configs.JwtTokenProvider;
 import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.repositories.UserRepository;

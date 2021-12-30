@@ -106,4 +106,16 @@ public class OrderController {
             throw new API_requestException("Order not found in database, status not updated");
         }
     }
+    @PutMapping("/assignWasher")
+    public OrderDetails assignWasher(@RequestBody OrderDetails od){
+        boolean doesOrderExists=or.existsById(od.getOrderId());
+        OrderDetails existingOrder = or.findById(od.getOrderId()).orElse(null);
+        if (doesOrderExists && existingOrder.getWasherName().contains("NA")){
+            existingOrder.setWasherName(od.getWasherName());
+            return or.save(existingOrder);
+        }
+        else {
+            throw new API_requestException("Order not found in database, washer not assigned");
+        }
+    }
 }
