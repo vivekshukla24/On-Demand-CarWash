@@ -26,56 +26,17 @@ public class userService {
     //Url to access the methods of admin Service
     String url1="http://ADMIN-SERVICE/admins";
 
-    //Redundant methods for tests
-    //To add a user
-    public UserDetails addUser(UserDetails userDetails) {
-        return ur.save(userDetails);
-    }
-    //To get all the users
-    public List<UserDetails> findallUsers(){
-        return ur.findAll();
-    }
-
-    //User can't find all Users so the all method will be vacant
-
-    //To find a user by id
-    public UserDetails findoneUser(int id){
-        return ur.findById(id).get();
-    }
-
-    //To delete a user
-    public String deleteUser(int id){
-        boolean doesUserExists=ur.existsById(id);
-        if(doesUserExists){
-            ur.deleteById(id);
-            return "User with ID "+id+" deleted successfully";
-        }
-        else {
-            throw new API_requestException("User not found, deletion failed");
-        }
-    }
-    //To update a user
-    public UserDetails updateuser(UserDetails userDetails){
-        boolean doesUserExists=ur.existsById(userDetails.getId());
-        if (doesUserExists){
-            UserDetails existingUser= ur.findById(userDetails.getId()).orElse(null);
-            existingUser.setName(userDetails.getName());
-            existingUser.setLocation(userDetails.getLocation());
-            existingUser.setPassword(userDetails.getPassword());
-            return ur.save(existingUser);
-        }
-        else {
-            throw new API_requestException("User not found in database, update failed");
-        }
+    //To see all the WashPacks
+    public List<WashPacks> getAllWP(){
+        WashPacks[] wp=restTemplate.getForObject(url1+"/findallWP",WashPacks[].class);
+        return (Arrays.asList(wp));
     }
 
     /** Only the methods that use rest template are below this comment**/
-
     //To add an order from User-end
     public OrderDetails addOrder(OrderDetails orderDetails){
         HttpEntity<OrderDetails> addOrderbyUser = new HttpEntity<>(orderDetails);
-        OrderDetails od=restTemplate.postForObject(url+"/add",addOrderbyUser,OrderDetails.class);
-        return od;
+        return restTemplate.postForObject(url+"/add",addOrderbyUser,OrderDetails.class);
     }
     //To update an order from User-end
     //This won't update the status of order

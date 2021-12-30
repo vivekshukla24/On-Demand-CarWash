@@ -4,6 +4,7 @@ import CG.user.WrapperModel.OrderReceipt;
 import CG.user.model.OrderDetails;
 import CG.user.model.Ratings;
 import CG.user.model.UserDetails;
+import CG.user.model.WashPacks;
 import CG.user.service.RatingsService;
 import CG.user.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +18,6 @@ public class UserController {
     private userService us;
     @Autowired
     private RatingsService rs;
-
-
-    //To find a user
-    @GetMapping("/findoneuser/{id}")
-    public UserDetails findoneUser(@PathVariable int id){
-        return us.findoneUser(id);
-    }
-    //To delete a user
-    @DeleteMapping("/deleteuser/{name}")
-    public String deleteUser(@PathVariable int id){
-        return us.deleteUser(id);
-    }
-    //To update a user
-    @PutMapping("/updateuser")
-    public UserDetails updateuser(@RequestBody UserDetails userDetails){
-        return us.updateuser(userDetails);
-    }
 
     /** Only User-end Rating controls below this **/
     //To add a rating from User-end
@@ -52,8 +36,13 @@ public class UserController {
         return rs.washerSpecific(washerName);
     }
 
-    /** Only the methods that call rest-template methods from services are below this comment**/
+    //To see all the wash packs
+    @GetMapping("/seeWP")
+    public List<WashPacks> getAllWP(){
+        return us.getAllWP();
+    }
 
+    /** Only the methods that call rest-template methods from services are below this comment**/
     //To add an order from User-end
     @PostMapping("/addOrder")
     public OrderDetails addOrder(@RequestBody OrderDetails orderDetails){

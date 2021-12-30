@@ -30,7 +30,6 @@ public class AdminService {
         User[] userDetailList=restTemplate.getForObject(url4+"/users/"+"USER",User[].class);
         return Arrays.asList(userDetailList);
     }
-
     /** Order controls through admin using rest template*/
     //To update the status of the order
     public OrderDetails updateStatus(OrderDetails orderDetails){
