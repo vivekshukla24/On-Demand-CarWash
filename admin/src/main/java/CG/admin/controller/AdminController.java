@@ -95,6 +95,11 @@ public class AdminController{
     public List<User> getAllWashers(){
         return as.getAllWashers();
     }
+    //To get one washer
+    @GetMapping("/oneWasher/{name}")
+    public User getOneWasher(@PathVariable String name){
+        return as.getOneWasher(name);
+    }
     //To get all the ratings of a specific Washer
     @GetMapping("/washerRating/{name}")
     public WasherRatings washerSpecificRatings(@PathVariable String name){

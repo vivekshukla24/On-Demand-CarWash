@@ -94,10 +94,14 @@ public class AdminService {
         User[] washerDetailList=restTemplate.getForObject(url4+"/users/"+"WASHER",User[].class);
         return Arrays.asList(washerDetailList);
     }
+    //To get a single washer
+    public User getOneWasher(String name){
+        return restTemplate.getForObject(url4+"/washer/"+name,User.class);
+    }
     //To get the details of Washers with all their reviews
     public WasherRatings washerSpecificRatings(String washerName){
         //Using a wrapper-class here to get 2 json in one
-        User wd =restTemplate.getForObject(url4+"/userByName/"+washerName,User.class);
+        User wd =restTemplate.getForObject(url4+"/washer/"+washerName,User.class);
         Ratings[] ratingsList=restTemplate.getForObject(url2+"/washerSpecificRating/"+washerName,Ratings[].class);
         //Wrapping into a "Proxy class"
         return new WasherRatings(wd.getId(),wd.getFullname(),wd.getEmail(),Arrays.asList(ratingsList));
