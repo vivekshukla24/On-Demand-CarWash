@@ -25,6 +25,11 @@ public class AdminService {
 
     /** 1) Only the methods that respond to rest templates are below this comment
         2) User controls through admin using rest template */
+    //To get the list of all the Admins using rest template
+    public List<User> getAllAdmins(){
+        User[] washerDetailList=restTemplate.getForObject(url4+"/users/"+"ADMIN",User[].class);
+        return Arrays.asList(washerDetailList);
+    }
     //To get all the users
     public List<User> getAllUsers(){
         User[] userDetailList=restTemplate.getForObject(url4+"/users/"+"USER",User[].class);

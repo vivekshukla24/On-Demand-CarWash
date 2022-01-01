@@ -3,10 +3,7 @@ package CG.zuulsecurity.controllers;
 import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -31,5 +28,8 @@ public class RepoController {
     public List<User> getUserByRole(@PathVariable String role){
         return as.findListbyRole(role);
     }
-
+    @GetMapping("/washer/{name}")
+    public User getWasher(@PathVariable String name){
+        return as.getWasher(name);
+    }
 }

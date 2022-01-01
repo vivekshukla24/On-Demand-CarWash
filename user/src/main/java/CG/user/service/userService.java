@@ -16,7 +16,6 @@ public class userService {
     @Autowired
     private RestTemplate restTemplate;
 
-
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
     //Url to access the methods of admin Service
