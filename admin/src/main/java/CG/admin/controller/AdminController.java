@@ -17,7 +17,6 @@ public class AdminController{
     @Autowired
     WashPackService wps;
 
-
     /** Washer controls through admin using service object */
     //To find all the washpack
     @GetMapping("/findallWP")
