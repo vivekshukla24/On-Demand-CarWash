@@ -21,7 +21,6 @@ import CG.zuulsecurity.models.Role;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -43,6 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	    user.setEnabled(true);
 	    System.out.println(user.getRoles());
 	    Iterator i=user.getRoles().iterator();
+		//If the user doesn't mention any role it would be set as User by default
 		if(user.getRoles().size()==0)
 		{
 			Role userRole = roleRepository.findByRole("USER");

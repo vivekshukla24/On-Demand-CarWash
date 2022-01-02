@@ -55,7 +55,7 @@ public class AdminController{
     /** Order controls through admin using rest template */
     //The status of the order can be either pending or completed
     @PutMapping("/updateStatus")
-    public OrderDetails updateStatusoftheOrder(@RequestBody OrderDetails orderDetails){
+    public OrderDetails updateStatusOrder(@RequestBody OrderDetails orderDetails){
        return as.updateStatus(orderDetails);
     }
     //To assign a washer to the order by Admin

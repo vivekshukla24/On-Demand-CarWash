@@ -40,14 +40,12 @@ public class AuthService {
     //To fnd user with their role
     public List<User> findListbyRole(String role) {
         Role r=roleRepository.findByRole(role);
-        //System.out.println(r);
         Set<Role> roles= new HashSet<>();
         roles.add(r);
         return ur.findByRolesIn(roles);
     }
     public User getWasher(String name){
         Role r=roleRepository.findByRole("WASHER");
-        //System.out.println(r);
         Set<Role> roles= new HashSet<>();
         roles.add(r);
         return ur.findByRolesIn(roles).stream().filter(x -> x.getFullname().contains(name)).findFirst().get();
