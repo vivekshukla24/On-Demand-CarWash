@@ -8,6 +8,7 @@ import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.repositories.UserRepository;
 import CG.zuulsecurity.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -59,14 +60,12 @@ public class AuthController {
 
     @SuppressWarnings("rawtypes")
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody User user) {
+    public ResponseEntity<?> register(@RequestBody User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-            throw new BadCredentialsException("User with the EmailID: " + user.getEmail() + " exists already");
+            return new ResponseEntity<>("User Already Exists in DB",HttpStatus.CONFLICT);
         }
         userService.saveUser(user);
-        Map<Object, Object> model = new HashMap<>();
-        model.put("message", "User is registered successfully!!!!");
-        return ok(model);
+        return new ResponseEntity<>("User Created Successfully",HttpStatus.CREATED);
     }
 }
