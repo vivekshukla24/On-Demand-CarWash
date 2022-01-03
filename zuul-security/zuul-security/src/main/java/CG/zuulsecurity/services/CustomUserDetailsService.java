@@ -34,47 +34,28 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public User findUserByEmail(String email) {
 	    return userRepository.findByEmail(email);
 	}
-
+	//To update the token of the user everytime the user logins
+	public User updateTokenByID(User ExistingUser, String token){
+		ExistingUser.setToken(token);
+		return userRepository.save(ExistingUser);
+	}
 	//save user using his role
 	public void saveUser(User user) {
 		//Bcrypt is a one-way strong Hashing Function
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	    user.setEnabled(true);
 	    System.out.println(user.getRoles());
-	    Iterator i=user.getRoles().iterator();
-		//If the user doesn't mention any role it would be set as User by default
-		if(user.getRoles().size()==0)
-		{
+		String roleToken=user.getToken();
+		if(user.getToken().isEmpty()){
 			Role userRole = roleRepository.findByRole("USER");
 			user.setRoles((new HashSet<>(Arrays.asList(userRole))));
 		}
-	    while (i.hasNext()) {   
-            Role r=(Role) i.next();
-			if(r.getRole()==null)
-			{
-				Role userRole = roleRepository.findByRole("USER");
-				user.setRoles((new HashSet<>(Arrays.asList(userRole))));
-			}
-			else
-			{
-				if(r.getRole().equals("ADMIN"))
-				{
-					Role userRole = roleRepository.findByRole("ADMIN");
-					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-				}
-				else if(r.getRole().equals("WASHER"))
-				{
-					Role userRole = roleRepository.findByRole("WASHER");
-					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-				}
-				else
-				{
-					Role userRole = roleRepository.findByRole("USER");
-					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-				}
-			}
-        }
+		else {
+			Role userRole = roleRepository.findByRole(roleToken);
+			user.setRoles((new HashSet<>(Arrays.asList(userRole))));
+		}
 	    userRepository.save(user);
+		//Logging the saved use in console
 	    System.out.println(user);
 	}
 	
@@ -103,3 +84,41 @@ public class CustomUserDetailsService implements UserDetailsService {
 	    return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 	}
 }
+
+
+/**
+ * The logic being used while getting the set roles
+ * 		Iterator i=user.getRoles().iterator();
+ *      //If the user doesn't mention any role it would be set as User by default
+ * 		if(user.getRoles().size()==0)
+ *                {
+ * 			Role userRole = roleRepository.findByRole("USER");
+ * 			user.setRoles((new HashSet<>(Arrays.asList(userRole))));
+ *        }
+ * 	    while (i.hasNext()) {
+ *             Role r=(Role) i.next();
+ * 			if(r.getRole()==null)
+ *            {
+ * 				Role userRole = roleRepository.findByRole("USER");
+ * 				user.setRoles((new HashSet<>(Arrays.asList(userRole))));
+ *            }
+ * 			else
+ *            {
+ * 				if(r.getRole().equals("ADMIN"))
+ *                {
+ * 					Role userRole = roleRepository.findByRole("ADMIN");
+ * 					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+ *                }
+ * 				else if(r.getRole().equals("WASHER"))
+ *                {
+ * 					Role userRole = roleRepository.findByRole("WASHER");
+ * 					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+ *                }
+ * 				else
+ *                {
+ * 					Role userRole = roleRepository.findByRole("USER");
+ * 					user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+ *                }
+ *            }
+ *         }
+ * */

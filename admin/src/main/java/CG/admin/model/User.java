@@ -18,6 +18,7 @@ public class User {
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
     private String email;
     private String password;
+    private String token;
     private String fullname;
     private boolean enabled;
 
@@ -31,6 +32,12 @@ public class User {
     }
     public void setId(String id) {
         this.id = id;
+    }
+    public String getToken() {
+        return token;
+    }
+    public void setToken(String token) {
+        this.token = token;
     }
     public String getEmail() {
         return email;

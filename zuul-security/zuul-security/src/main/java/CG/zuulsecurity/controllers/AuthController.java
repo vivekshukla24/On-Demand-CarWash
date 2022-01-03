@@ -34,7 +34,7 @@ public class AuthController {
 
     @SuppressWarnings("rawtypes")
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody AuthBody data) {
+    public ResponseEntity<?> login(@RequestBody AuthBody data) {
         try {
             String username = data.getEmail();
             System.out.println(username);
@@ -46,15 +46,12 @@ public class AuthController {
 			}
             System.out.println(
             		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()))
-                    		
             		);
             String token = jwtTokenProvider.createToken(username, this.users.findByEmail(username).getRoles());
-            Map<Object, Object> model = new HashMap<>();
-            model.put("username", username);
-            model.put("token", token);
-            return ok(model);
+            User ExistingUser=userService.findUserByEmail(username);
+            return new ResponseEntity<>(userService.updateTokenByID(ExistingUser,token),HttpStatus.OK);
         } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Entered Email/Password is Invalid");
+            throw new BadCredentialsException("Email or Password is Invalid, Please try again with correct credentials");
         }
     }
 
@@ -63,9 +60,9 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-            return new ResponseEntity<>("User Already Exists in DB",HttpStatus.CONFLICT);
+            return new ResponseEntity<>("User Exists Already, Try with a different E-mail address",HttpStatus.CONFLICT);
         }
         userService.saveUser(user);
-        return new ResponseEntity<>("User Created Successfully",HttpStatus.CREATED);
+        return new ResponseEntity<>("User Registered Successfully",HttpStatus.CREATED);
     }
 }
