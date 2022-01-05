@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)    
-[![Project Architecture](https://github.com/vivekshukla24/On-Demand-CarWash/blob/master/ODCW-Architecture.jpeg)
 # On Demand Car Wash
 
 This a on demand car wash service made using microservice architecture
@@ -37,3 +36,6 @@ with the following tools.
 - Admin Service -> http://localhost:8081/swagger-ui.html
 - User Service -> http://localhost:8083/swagger-ui.html
 - Washer Service -> http://localhost:8085/swagger-ui.html
+
+### Architecture
+![Project Architecture](https://github.com/vivekshukla24/On-Demand-CarWash/blob/master/ODCW-Architecture.jpeg "Project Architecture")
