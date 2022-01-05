@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)    
 # On Demand Car Wash
-![alt text](https://github.com/vivekshukla24/On-Demand-CarWash/blob/master/.jpg?raw=true)
+![alt text](https://github.com/vivekshukla24/On-Demand-CarWash/blob/master/ODCW-Architecture.jpg?raw=true)
 This a on demand car wash service made using microservice architecture
 with the following tools.
 
