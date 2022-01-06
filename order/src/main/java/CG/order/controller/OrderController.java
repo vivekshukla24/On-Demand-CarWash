@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
