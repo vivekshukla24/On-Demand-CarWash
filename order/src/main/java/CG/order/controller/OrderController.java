@@ -3,9 +3,14 @@ package CG.order.controller;
 import CG.order.exceptionHandlers.API_requestException;
 import CG.order.model.OrderDetails;
 import CG.order.repository.OrderRepo;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @CrossOrigin("http://localhost:4200")
@@ -22,8 +27,9 @@ public class OrderController {
     }
     //Find one object by ID
     @GetMapping("/findone/{id}")
-    public OrderDetails findoneOrder(@PathVariable int id){
-         return or.findById(id).get();
+    public ResponseEntity<OrderDetails> findoneOrder(@PathVariable int id){
+         OrderDetails order=or.findById(id).orElseThrow(()-> new API_requestException("Order with ID -> "+id+" not found"));
+         return ResponseEntity.ok(order);
     }
     //To add an order
     @PostMapping("/add")
@@ -34,33 +40,25 @@ public class OrderController {
         return or.save(order);
     }
     //To delete specific order with id
-    @DeleteMapping("/delete/{id}")
-    public String deleteOrder(@PathVariable int id){
-        boolean doesOrderExist=or.existsById(id);
-        if(doesOrderExist){
-            or.deleteById(id);
-            return "Order with ID -> "+id+" deleted successfully from OrderDB";
-        }
-        else {
-            throw new API_requestException("Order not found, deletion failed");
-        }
+    @DeleteMapping("/delete/{orderId}")
+    public ResponseEntity<Map<String,Boolean>> deleteOrder(@PathVariable int orderId){
+        OrderDetails order=or.findById(orderId).orElseThrow(()-> new API_requestException("Order with ID -> "+orderId+" not found,deletion failed"));
+        or.delete(order);
+        Map<String, Boolean> reponse = new HashMap<>();
+        reponse.put("Order Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(reponse);
     }
     //To update an order
-    @PutMapping("/update")
-    public OrderDetails updateOrder(@RequestBody OrderDetails orderDetails){
-        boolean doesOrderExist=or.existsById(orderDetails.getOrderId());
-        if(doesOrderExist){
-            OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
-            existingOrder.setWasherName(orderDetails.getWasherName());
-            existingOrder.setWashpackId(orderDetails.getWashpackId());
-            //Status can't be updated by the user
-            existingOrder.setCars(orderDetails.getCars());
-            existingOrder.setPhoneNo(orderDetails.getPhoneNo());
-            return or.save(existingOrder);
-        }
-        else {
-            throw new API_requestException("Order not found in database, update request failed");
-        }
+    @PutMapping("/update/{orderId}")
+    public ResponseEntity<OrderDetails> updateOrder(@PathVariable int orderId,@RequestBody OrderDetails orderDetails){
+        OrderDetails existingOrder=or.findById(orderId).orElseThrow(() -> new API_requestException("Order with ID -> "+orderId+" not found,update failed"));
+        existingOrder.setWasherName(orderDetails.getWasherName());
+        existingOrder.setWashpackId(orderDetails.getWashpackId());
+        //Status can't be updated by the user
+        existingOrder.setCars(orderDetails.getCars());
+        existingOrder.setPhoneNo(orderDetails.getPhoneNo());
+        OrderDetails order=or.save(existingOrder);
+        return ResponseEntity.ok(order);
     }
 
     /** Getting consumed by the Washer and Admin model */
