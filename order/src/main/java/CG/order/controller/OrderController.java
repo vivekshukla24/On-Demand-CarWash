@@ -98,18 +98,13 @@ public class OrderController {
     }
 
     /** Methods that are consumed exclusively by rest templates below this comment */
-    //This is called by Admin to update the status of the order
-    @PutMapping("/updateStatus")
-    public OrderDetails updateStatus(@RequestBody OrderDetails orderDetails){
-        boolean doesOrderExists=or.existsById(orderDetails.getOrderId());
-        if (doesOrderExists){
-            OrderDetails existingOrder = or.findById(orderDetails.getOrderId()).orElse(null);
-            existingOrder.setStatus(orderDetails.getStatus());
-            return or.save(existingOrder);
-        }
-        else {
-            throw new API_requestException("Order not found in database, status not updated");
-        }
+    //This is called by Admin to update the status of the order(For Completed Order)
+    @PutMapping("/updateStatus/{orderId}")
+    public ResponseEntity<OrderDetails> updateStatus(@PathVariable String orderId){
+        OrderDetails existingOrder=or.findById(orderId).orElseThrow(() -> new API_requestException("Order with ID -> "+orderId+" not found, status update failed"));
+        existingOrder.setStatus("Completed");
+        OrderDetails order=or.save(existingOrder);
+        return ResponseEntity.ok(order);
     }
     @PutMapping("/assignWasher")
     public OrderDetails assignWasher(@RequestBody OrderDetails od){
