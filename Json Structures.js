@@ -25,6 +25,17 @@
   ]
 }
 
+-> To add an order
+{  
+    "useremailid": "xyz@gmail.com",
+    "washpackId": 0,
+    "phoneNo": 1010101010,
+    "areapincode": "101010",
+    "cars": {
+            "name": "Car name",
+            "model": "Model name"
+    }
+}
 <----------------------------------------------------------->
 -> Structure of a [Washer] on DB
 {
