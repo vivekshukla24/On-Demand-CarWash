@@ -54,8 +54,7 @@ public class userService {
         OrderDetails od=restTemplate.getForObject(url+"/findone/"+id,OrderDetails.class);
         WashPacks wp=restTemplate.getForObject(url1+"/findoneWP/"+od.getWashpackId(),WashPacks.class);
         if(od.getStatus().contains("Completed")){
-           int cars_count= od.getCars().size();
-            return new OrderReceipt(id,od.getWasherName(),wp,"You had "+cars_count+" cars in total so your payable amount is :- ",cars_count* wp.getCost());
+            return new OrderReceipt(id,od.getUseremailid(),od.getWasherName(),wp.getName(),wp.getDescription(),wp.getCost());
         }
         else{
             throw new API_requestException("Your order with ID -> "+id+" is still pending");

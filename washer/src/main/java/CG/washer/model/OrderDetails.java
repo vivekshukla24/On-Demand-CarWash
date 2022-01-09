@@ -2,45 +2,62 @@ package CG.washer.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Document(collection="orders")
 public class OrderDetails {
 
     @Id
-    @NotEmpty(message = "OrderId can't be empty")
-    int orderId;
+    String orderId;
+    @NotEmpty(message = "Email Can't be empty")
+    String useremailid;
     @NotEmpty(message = "Washer Name Can't be empty")
     String washerName;
     @NotEmpty(message = "Wash pack can't be empty")
     int washpackId;
     @NotEmpty(message = "Date can't be empty")
-    int phoneNo;
+    long phoneNo;
+    @NotEmpty(message = "Pincode can't be empty")
+    String areapincode;
     @NotEmpty(message = "status can't be empty")
     String status;
     @NotEmpty(message = "car field can't be empty")
-    List<Car> cars;
+    Car cars;
 
     //Default Constructor
     public OrderDetails(){
-
     }
 
-    public OrderDetails(int orderId, String washerName, int washpackId, int phoneNo, String status, List<Car> cars) {
+    //Constructor
+    public OrderDetails(String orderId, String useremailid, String washerName, int washpackId, long phoneNo, String areapincode, String status, Car cars) {
         this.orderId = orderId;
+        this.useremailid = useremailid;
         this.washerName = washerName;
         this.washpackId = washpackId;
         this.phoneNo = phoneNo;
+        this.areapincode = areapincode;
         this.status = status;
         this.cars = cars;
     }
 
     //Getters and Setters
-    public int getOrderId() {
+    public String getUseremailid() {
+        return useremailid;
+    }
+    public void setUseremailid(String useremailid) {
+        this.useremailid = useremailid;
+    }
+    public String getAreapincode() {
+        return areapincode;
+    }
+    public void setAreapincode(String areapincode) {
+        this.areapincode = areapincode;
+    }
+    public String getOrderId() {
         return orderId;
     }
-    public void setOrderId(int orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
     public String getWasherName() {
@@ -55,10 +72,10 @@ public class OrderDetails {
     public void setWashpackId(int washpackId) {
         this.washpackId = washpackId;
     }
-    public int getPhoneNo() {
+    public long getPhoneNo() {
         return phoneNo;
     }
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(long phoneNo) {
         this.phoneNo = phoneNo;
     }
     public String getStatus() {
@@ -67,20 +84,22 @@ public class OrderDetails {
     public void setStatus(String status) {
         this.status = status;
     }
-    public List<Car> getCars() {
+    public Car getCars() {
         return cars;
     }
-    public void setCars(List<Car> cars) {
+    public void setCars(Car cars) {
         this.cars = cars;
     }
 
     @Override
     public String toString() {
         return "OrderDetails{" +
-                "orderId=" + orderId +
+                "orderId='" + orderId + '\'' +
+                ", useremailid='" + useremailid + '\'' +
                 ", washerName='" + washerName + '\'' +
                 ", washpackId=" + washpackId +
                 ", phoneNo=" + phoneNo +
+                ", areapincode='" + areapincode + '\'' +
                 ", status='" + status + '\'' +
                 ", cars=" + cars +
                 '}';
