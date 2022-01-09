@@ -40,7 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		return userRepository.save(ExistingUser);
 	}
 	//save user using his role
-	public void saveUser(User user) {
+	public User saveUser(User user) {
 		//Bcrypt is a one-way strong Hashing Function
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	    user.setEnabled(true);
@@ -54,9 +54,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 			Role userRole = roleRepository.findByRole(roleToken);
 			user.setRoles((new HashSet<>(Arrays.asList(userRole))));
 		}
-	    userRepository.save(user);
 		//Logging the saved use in console
-	    System.out.println(user);
+		System.out.println(user);
+		//Returning and logging the user
+	    return userRepository.save(user);
 	}
 	
 	@Override

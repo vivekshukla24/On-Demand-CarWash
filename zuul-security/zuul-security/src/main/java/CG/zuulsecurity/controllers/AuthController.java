@@ -60,9 +60,8 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
-            return new ResponseEntity<>("User Exists Already, Try with a different E-mail address",HttpStatus.CONFLICT);
+            return new ResponseEntity<>("User Exists Already, Try with a different E-mail address", HttpStatus.CONFLICT);
         }
-        userService.saveUser(user);
-        return new ResponseEntity<>("User Registered Successfully",HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.saveUser(user),HttpStatus.CREATED);
     }
 }
