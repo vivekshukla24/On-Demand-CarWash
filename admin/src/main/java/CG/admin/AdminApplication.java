@@ -27,7 +27,7 @@ import java.util.Collections;
 @EnableEurekaClient
 @EnableSwagger2
 @SpringBootApplication
-public class AdminApplication implements CommandLineRunner {
+public class AdminApplication {
 	@Autowired
 	private WashPackRepo wpr;
 
@@ -61,13 +61,5 @@ public class AdminApplication implements CommandLineRunner {
 				"API license",
 				"https://github.com/vivekshukla24",
 				Collections.emptyList());
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		if(wpr.findAll().isEmpty()){
-			wpr.save(new WashPacks(1,"All clean pack",2500,"Interior cleaning, Exterior cleaning, Mats cleaning, polishing"));
-			wpr.save(new WashPacks(2,"Selective Pack",1500,"Interior cleaning, Exterior cleaning"));
-		}
 	}
 }

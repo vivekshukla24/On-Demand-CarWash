@@ -20,21 +20,6 @@ public class WasherController {
     WasherService wr;
 
     /** Only the methods that consume rest template are below this comment **/
-    //To see the completed orders
-    @GetMapping("/completedOrders")
-    public List<OrderDetails> getCompletedOrders(){
-        return wr.getCompletedOrders();
-    }
-    //To see the pending orders
-    @GetMapping("/pendingOrders")
-    public List<OrderDetails> getPendingOrders(){
-        return wr.getPendingOrders();
-    }
-    //To see the cancelled orders
-    @GetMapping("/cancelledOrders")
-    public List<OrderDetails> getCancelledOrders(){
-        return wr.getCancelledOrders();
-    }
     //To see the Unassigned orders
     @GetMapping("/findUnassigned")
     public List<OrderDetails> getUnassignedOrders(){

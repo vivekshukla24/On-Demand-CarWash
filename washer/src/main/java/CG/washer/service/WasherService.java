@@ -20,21 +20,7 @@ public class WasherService {
     String url="http://ORDER-SERVICE/orders";
 
     /** Only the methods that use rest template are below this comment **/
-    //To see the completed orders
-    public List<OrderDetails> getCompletedOrders(){
-        OrderDetails[] completedList = restTemplate.getForObject(url+"/findCompleted",OrderDetails[].class);
-        return Arrays.asList(completedList);
-    }
-    //To see the pending orders
-    public List<OrderDetails> getPendingOrders(){
-        OrderDetails[] pendingList = restTemplate.getForObject(url+"/findPending",OrderDetails[].class);
-        return Arrays.asList(pendingList);
-    }
-    //To see the cancelled orders
-    public List<OrderDetails> getCancelledOrders(){
-        OrderDetails[] cancelledList = restTemplate.getForObject(url+"/findCancelled",OrderDetails[].class);
-        return Arrays.asList(cancelledList);
-    }
+
     //To see the Unassigned orders
     public List<OrderDetails> getUnassignedOrders(){
         OrderDetails[] unassignedList = restTemplate.getForObject(url+"/findUnassigned",OrderDetails[].class);

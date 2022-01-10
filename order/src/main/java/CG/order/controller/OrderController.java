@@ -50,6 +50,7 @@ public class OrderController {
     @PutMapping("/update/{orderId}")
     public ResponseEntity<OrderDetails> updateOrder(@PathVariable String orderId,@RequestBody OrderDetails orderDetails){
         OrderDetails existingOrder=or.findById(orderId).orElseThrow(() -> new API_requestException("Order with ID -> "+orderId+" not found,update failed"));
+        //OrderId won't be updated for @putmapping
         //WasherName can't be updated by user
         existingOrder.setWashpackId(orderDetails.getWashpackId());
         //Status can't be updated by the user
@@ -58,8 +59,8 @@ public class OrderController {
         existingOrder.setAreapincode(orderDetails.getAreapincode());
         existingOrder.setPhoneNo(orderDetails.getPhoneNo());
         existingOrder.setCars(orderDetails.getCars());
-        OrderDetails order=or.save(existingOrder);
-        return ResponseEntity.ok(order);
+        OrderDetails updatedOrder=or.save(existingOrder);
+        return ResponseEntity.ok(updatedOrder);
     }
 
     /** Getting consumed by the Washer and Admin model */
