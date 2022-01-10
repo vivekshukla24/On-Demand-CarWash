@@ -1,14 +1,15 @@
 package CG.zuulsecurity.services;
 
+import CG.zuulsecurity.exceptionHandlers.API_requestException;
 import CG.zuulsecurity.models.Role;
 import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.repositories.RoleRepository;
 import CG.zuulsecurity.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 @Service
 public class AuthService {
@@ -27,15 +28,12 @@ public class AuthService {
         return ur.findAll().stream().filter(x -> x.getFullname().contains(name)).findFirst().get();
     }
     //To delete a User
-    public String deleteUser(String id){
-        boolean doesAdminExists=ur.existsById(id);
-        if(doesAdminExists) {
-            ur.deleteById(id);
-            return "Admin with ID " + id + " deleted successfully";
-        }
-        else {
-            return "User with ID "+ id +" not found deletion failed";
-        }
+    public ResponseEntity<Map<String,Boolean>> deleteUser(String id){
+        User user=ur.findById(id).orElseThrow(() -> new API_requestException("User with ID -> "+id+" not found, deletion failed"));
+        ur.delete(user);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("User Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
     //To fnd user with their role
     public List<User> findListbyRole(String role) {

@@ -51,7 +51,7 @@ public class AdminApplication implements CommandLineRunner {
 				.apiInfo(apiinform());
 
 	}
-	
+
 	private ApiInfo apiinform(){
 		return new ApiInfo(
 				"Admin's Panel",

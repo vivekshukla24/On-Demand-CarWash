@@ -3,8 +3,10 @@ package CG.zuulsecurity.controllers;
 import CG.zuulsecurity.models.User;
 import CG.zuulsecurity.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/manage")
@@ -20,8 +22,8 @@ public class RepoController {
     public User getSpecificUser(@PathVariable String name){
         return as.getSpecificUser(name);
     }
-    @GetMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable String id){
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteUser(@PathVariable String id){
         return as.deleteUser(id);
     }
     @GetMapping("/users/{role}")
