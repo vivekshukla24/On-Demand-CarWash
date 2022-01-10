@@ -5,6 +5,7 @@ import CG.zuulsecurity.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -53,10 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	//The method where we filter accessible methods with their role
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().disable();
 	    http.httpBasic().disable().csrf().disable().sessionManagement()
 	            .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 	            .antMatchers("/api/auth/login","/manage/**").permitAll()
 	            .antMatchers("/api/auth/register").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 	            .antMatchers("/users/**").hasAuthority("USER")
 	            .antMatchers("/admins/**").hasAuthority("ADMIN")
 				.antMatchers("/washers/**").hasAuthority("WASHER")

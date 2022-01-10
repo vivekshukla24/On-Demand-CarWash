@@ -27,7 +27,6 @@ import java.util.Collections;
 @EnableEurekaClient
 @EnableSwagger2
 @SpringBootApplication
-@Configuration
 public class AdminApplication implements CommandLineRunner {
 	@Autowired
 	private WashPackRepo wpr;
@@ -70,22 +69,5 @@ public class AdminApplication implements CommandLineRunner {
 			wpr.save(new WashPacks(1,"All clean pack",2500,"Interior cleaning, Exterior cleaning, Mats cleaning, polishing"));
 			wpr.save(new WashPacks(2,"Selective Pack",1500,"Interior cleaning, Exterior cleaning"));
 		}
-	}
-
-	//Cross-origin configuration for angular
-	@Bean
-	public CorsFilter corsFilter() {
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
-				"Accept", "Authorization", "Origin, Accept", "X-Requested-With", "Access-Control-Request-Method",
-				"Access-Control-Request-Headers"));
-		corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
-				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
-		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 }
