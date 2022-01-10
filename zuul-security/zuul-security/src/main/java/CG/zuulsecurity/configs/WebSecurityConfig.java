@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	            .antMatchers("/users/**").hasAuthority("USER")
 	            .antMatchers("/admins/**").hasAuthority("ADMIN")
 				.antMatchers("/washers/**").hasAuthority("WASHER")
-	            .antMatchers("orders/orders/**").hasAuthority("ADMIN")
+	            .antMatchers("/orders/**").hasAuthority("ADMIN")
 	            .anyRequest().authenticated().and().csrf()
 	            .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
 	            .apply(new JwtConfigurer(jwtTokenProvider));
