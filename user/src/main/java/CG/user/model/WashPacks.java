@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WashPacks {
 
     @Id
-    int id;
+    String id;
     String name;
     int cost;
     String description;
@@ -18,7 +18,7 @@ public class WashPacks {
     }
 
     //Constructor
-    public WashPacks(int id, String name, int cost, String description) {
+    public WashPacks(String id, String name, int cost, String description) {
         this.id = id;
         this.name = name;
         this.cost = cost;
@@ -38,10 +38,10 @@ public class WashPacks {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getName() {

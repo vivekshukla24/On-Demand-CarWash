@@ -1,33 +1,25 @@
 package CG.user;
 
 import CG.user.Repository.RatingRepo;
-import CG.user.model.Ratings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.Arrays;
 import java.util.Collections;
 
 @EnableEurekaClient
 @EnableSwagger2
 @SpringBootApplication
-public class UserApplication implements CommandLineRunner {
+public class UserApplication{
 	@Autowired
 	private RatingRepo rr;
 
@@ -62,15 +54,5 @@ public class UserApplication implements CommandLineRunner {
 				"https://github.com/vivekshukla24",
 				Collections.emptyList());
 
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		if(rr.findAll().isEmpty()){
-			rr.save(new Ratings(1,"Kenny","Really good experience with kenny, my car is clean",8));
-			rr.save(new Ratings(2,"Kenny","Really good job on my car",9));
-			rr.save(new Ratings(3,"Joel","Really good experience with Joel, my car is clean",7));
-			rr.save(new Ratings(4,"Joel","Really good job, my looks good as new",9));
-		}
 	}
 }

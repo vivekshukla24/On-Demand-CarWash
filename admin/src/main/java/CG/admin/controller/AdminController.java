@@ -5,8 +5,10 @@ import CG.admin.WrapperModel.WasherRatings;
 import CG.admin.service.AdminService;
 import CG.admin.service.WashPackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admins")
@@ -24,7 +26,7 @@ public class AdminController{
     }
     //To find one WashPack with ID
     @GetMapping("/findoneWP/{id}")
-    public WashPacks findoneWP(@PathVariable int id){
+    public WashPacks findoneWP(@PathVariable String id){
         return wps.findoneWP(id);
     }
     //To add a new WashPack
@@ -34,7 +36,7 @@ public class AdminController{
     }
     //To delete a Washpack
     @DeleteMapping("/deleteWP/{id}")
-    public String deleteWP(@PathVariable int id){
+    public ResponseEntity<Map<String,Boolean>> deleteWP(@PathVariable String id){
         return wps.deleteWP(id);
     }
     //To update a Washpack

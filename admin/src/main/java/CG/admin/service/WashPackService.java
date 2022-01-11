@@ -4,8 +4,12 @@ import CG.admin.exceptionHandlers.API_requestException;
 import CG.admin.model.WashPacks;
 import CG.admin.repository.WashPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WashPackService {
@@ -22,19 +26,16 @@ public class WashPackService {
         return wr.findAll();
     }
     //To find one WashPack
-    public WashPacks findoneWP(int id){
+    public WashPacks findoneWP(String id){
         return wr.findById(id).get();
     }
     //To delete a WashPack
-    public String deleteWP(int id){
-        boolean doesWPexists=wr.existsById(id);
-        if(doesWPexists){
-            wr.deleteById(id);
-            return "Wash Pack with "+id+" deleted Successfully";
-        }
-        else {
-            throw new API_requestException("WashPack not found in database, deletion failed");
-        }
+    public ResponseEntity<Map<String,Boolean>> deleteWP(String id){
+        WashPacks wp=wr.findById(id).orElseThrow(() ->  new API_requestException("Washpack with ID -> "+id+"deletion failed"));
+        wr.delete(wp);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Washpack Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
     //To update a WashPack
     public WashPacks updateWP(WashPacks washPacks){

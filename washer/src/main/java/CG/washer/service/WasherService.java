@@ -31,13 +31,15 @@ public class WasherService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<OrderDetails> updatedOrder = new HttpEntity<>(orderDetails,headers);
-        return restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
+        OrderDetails od = restTemplate.exchange(url+"/updateStatus", HttpMethod.PUT,updatedOrder,OrderDetails.class).getBody();
+        return od;
     }
     //To assign a washer to the order by washer
     public OrderDetails assignSelf(OrderDetails orderDetails){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<OrderDetails> assignedWasher = new HttpEntity<>(orderDetails,headers);
-        return restTemplate.exchange(url+"/assignWasher", HttpMethod.PUT,assignedWasher,OrderDetails.class).getBody();
+        OrderDetails od = restTemplate.exchange(url+"/assignWasher", HttpMethod.PUT,assignedWasher,OrderDetails.class).getBody();
+        return od;
     }
 }

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/orders")
+@CrossOrigin("http://localhost:4200")
 public class OrderController {
     @Autowired
     private OrderRepo or;
@@ -100,6 +101,7 @@ public class OrderController {
 
     /** Methods that are consumed exclusively by rest templates below this comment */
     //This is called by Admin to update the status of the order(For Completed Order)
+
     @PutMapping("/updateStatus/{orderId}")
     public ResponseEntity<OrderDetails> updateStatus(@PathVariable String orderId){
         OrderDetails existingOrder=or.findById(orderId).orElseThrow(() -> new API_requestException("Order with ID -> "+orderId+" not found, status update failed"));
