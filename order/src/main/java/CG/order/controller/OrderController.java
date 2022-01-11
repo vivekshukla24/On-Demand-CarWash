@@ -4,6 +4,7 @@ import CG.order.exceptionHandlers.API_requestException;
 import CG.order.model.OrderDetails;
 import CG.order.repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
@@ -89,6 +90,11 @@ public class OrderController {
     @GetMapping("/findUnassigned")
     public List<OrderDetails> getUnassignedOrders(){
         return or.findAll().stream().filter(x -> x.getWasherName().contains("NA")).collect(Collectors.toList());
+    }
+    //To fin all the orders by a specific washer
+    @GetMapping("/washerSpecficOrder/{washername}")
+    public List<OrderDetails> getWasherSpecificOrders(@PathVariable String washername){
+        return or.findAll().stream().filter(x -> x.getWasherName().contains(washername)).collect(Collectors.toList());
     }
     //To cancel the order
     @PutMapping("/cancelOrder")
