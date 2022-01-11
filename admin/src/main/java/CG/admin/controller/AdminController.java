@@ -26,7 +26,7 @@ public class AdminController{
     }
     //To find one WashPack with ID
     @GetMapping("/findoneWP/{id}")
-    public WashPacks findoneWP(@PathVariable String id){
+    public ResponseEntity<WashPacks> findoneWP(@PathVariable String id){
         return wps.findoneWP(id);
     }
     //To add a new WashPack
@@ -40,9 +40,9 @@ public class AdminController{
         return wps.deleteWP(id);
     }
     //To update a Washpack
-    @PutMapping("/updateWP")
-    public WashPacks updateWP(@RequestBody WashPacks washPacks){
-        return wps.updateWP(washPacks);
+    @PutMapping("/updateWP/{id}")
+    public ResponseEntity<WashPacks> updateWP(@PathVariable String id,@RequestBody WashPacks washPacks){
+        return wps.updateWP(id,washPacks);
     }
 
     /** Order controls through admin using rest template */
@@ -53,7 +53,6 @@ public class AdminController{
     }
 
     /** Washer controls through admin using rest template */
-
     //To get one washer
     @GetMapping("/oneWasher/{name}")
     public User getOneWasher(@PathVariable String name){

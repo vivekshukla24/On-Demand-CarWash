@@ -26,29 +26,27 @@ public class WashPackService {
         return wr.findAll();
     }
     //To find one WashPack
-    public WashPacks findoneWP(String id){
-        return wr.findById(id).get();
+    public ResponseEntity<WashPacks> findoneWP(String id){
+        WashPacks wp=wr.findById(id).orElseThrow(() ->  new API_requestException("Washpack with ID -> "+id+" not found"));
+        return ResponseEntity.ok(wp);
     }
     //To delete a WashPack
     public ResponseEntity<Map<String,Boolean>> deleteWP(String id){
-        WashPacks wp=wr.findById(id).orElseThrow(() ->  new API_requestException("Washpack with ID -> "+id+"deletion failed"));
+        WashPacks wp=wr.findById(id).orElseThrow(() ->  new API_requestException("Washpack with ID -> "+id+" not found, deletion failed"));
         wr.delete(wp);
         Map<String, Boolean> response = new HashMap<>();
         response.put("Washpack Deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
     //To update a WashPack
-    public WashPacks updateWP(WashPacks washPacks){
-        boolean doesWPexists=wr.existsById(washPacks.getId());
-        if(doesWPexists){
-            WashPacks existingWashPack=wr.findById(washPacks.getId()).orElse(null);
-            existingWashPack.setCost(washPacks.getCost());
-            existingWashPack.setName(washPacks.getName());
-            existingWashPack.setDescription(washPacks.getDescription());
-            return wr.save(existingWashPack);
-        }
-        else {
-            throw new API_requestException("WashPack not found in database, update request failed");
-        }
+    public ResponseEntity<WashPacks> updateWP(String id,WashPacks washPacks) {
+        WashPacks existingWashPack = wr.findById(id).orElseThrow(() -> new API_requestException("Washpack with ID -> " + id + " not found, updating failed"));
+        //ID won't be updated ever
+        existingWashPack.setName(washPacks.getName());
+        existingWashPack.setCost(washPacks.getCost());
+        existingWashPack.setDescription(washPacks.getDescription());
+        WashPacks response=wr.save(existingWashPack);
+        return ResponseEntity.ok(response);
     }
 }
+
