@@ -1,6 +1,5 @@
 package CG.user.WrapperModel;
 
-import CG.user.model.WashPacks;
 
 public class OrderReceipt {
     private String orderID;
