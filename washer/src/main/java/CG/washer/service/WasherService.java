@@ -1,6 +1,7 @@
 package CG.washer.service;
 
 import CG.washer.model.OrderDetails;
+import CG.washer.model.WashPacks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,12 +16,16 @@ import java.util.List;
 public class WasherService {
     @Autowired
     private RestTemplate restTemplate;
-
+    String url1="http://ADMIN-SERVICE/admins";
     //Url to access the methods of Order Service
     String url="http://ORDER-SERVICE/orders";
 
     /** Only the methods that use rest template are below this comment **/
-
+    //To see all the WashPacks
+    public List<WashPacks> getAllWP(){
+        WashPacks[] wp=restTemplate.getForObject(url1+"/findallWP",WashPacks[].class);
+        return (Arrays.asList(wp));
+    }
     //To see the Unassigned orders
     public List<OrderDetails> getUnassignedOrders(){
         OrderDetails[] unassignedList = restTemplate.getForObject(url+"/findUnassigned",OrderDetails[].class);

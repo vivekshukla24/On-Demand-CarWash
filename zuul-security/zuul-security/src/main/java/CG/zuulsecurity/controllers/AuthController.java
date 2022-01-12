@@ -41,9 +41,8 @@ public class AuthController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            System.out.println(
-            		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()))
-            		);
+            System.out.println(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword())));
+
             String token = jwtTokenProvider.createToken(username, this.users.findByEmail(username).getRoles());
             User ExistingUser=userService.findUserByEmail(username);
             return new ResponseEntity<>(userService.updateTokenByID(ExistingUser,token),HttpStatus.OK);

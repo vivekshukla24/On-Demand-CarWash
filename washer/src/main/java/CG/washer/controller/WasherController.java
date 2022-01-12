@@ -1,6 +1,7 @@
 package CG.washer.controller;
 
 import CG.washer.model.OrderDetails;
+import CG.washer.model.WashPacks;
 import CG.washer.service.WasherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,9 @@ public class WasherController {
     public OrderDetails assignSelf(@RequestBody OrderDetails orderDetails){
         return wr.assignSelf(orderDetails);
     }
-
+    //To see all the wash packs
+    @GetMapping("/seeWP")
+    public List<WashPacks> getAllWP(){
+        return wr.getAllWP();
+    }
 }
