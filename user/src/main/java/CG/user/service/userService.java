@@ -50,9 +50,9 @@ public class userService {
         return response.getBody();
     }
     //To get the receipt of the order after order is completed
-    public OrderReceipt getReceipt(int id){
+    public OrderReceipt getReceipt(String id){
         OrderDetails od=restTemplate.getForObject(url+"/findone/"+id,OrderDetails.class);
-        WashPacks wp=restTemplate.getForObject(url1+"/findoneWP/"+od.getWashpackId(),WashPacks.class);
+        WashPacks wp=restTemplate.getForObject(url1+"/wpbyname/"+od.getWashpack(),WashPacks.class);
         if(od.getStatus().contains("Completed")){
             return new OrderReceipt(id,od.getUseremailid(),od.getWasherName(),wp.getName(),wp.getDescription(),wp.getCost());
         }

@@ -6,7 +6,6 @@ import CG.admin.repository.WashPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +28,10 @@ public class WashPackService {
     public ResponseEntity<WashPacks> findoneWP(String id){
         WashPacks wp=wr.findById(id).orElseThrow(() ->  new API_requestException("Washpack with ID -> "+id+" not found"));
         return ResponseEntity.ok(wp);
+    }
+    //To find washpack with washpack name for user's reciept
+    public WashPacks findbyname(String name){
+        return wr.findAll().stream().filter(x -> x.getName().contains(name)).findFirst().get();
     }
     //To delete a WashPack
     public ResponseEntity<Map<String,Boolean>> deleteWP(String id){

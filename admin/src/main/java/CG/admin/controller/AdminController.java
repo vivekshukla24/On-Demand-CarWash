@@ -44,6 +44,11 @@ public class AdminController{
     public ResponseEntity<WashPacks> updateWP(@PathVariable String id,@RequestBody WashPacks washPacks){
         return wps.updateWP(id,washPacks);
     }
+    //To find washpack with washpack name for user's reciept
+    @GetMapping("/wpbyname/{name}")
+    public WashPacks wpbyname(@PathVariable String name){
+        return wps.findbyname(name);
+    }
 
     /** Order controls through admin using rest template */
     //To assign a washer to the order by Admin

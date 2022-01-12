@@ -60,7 +60,7 @@ public class UserController {
     }
     //To get the receipt of the order after order is completed
     @GetMapping("/getReceipt/{id}")
-    public OrderReceipt getReceipt(@PathVariable int id){
+    public OrderReceipt getReceipt(@PathVariable String id){
        return us.getReceipt(id);
     }
 }

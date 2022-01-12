@@ -15,7 +15,7 @@ public class OrderDetails {
     @NotEmpty(message = "Washer Name Can't be empty")
     String washerName;
     @NotEmpty(message = "Wash pack can't be empty")
-    int washpackId;
+    String washpack;
     @NotEmpty(message = "Date can't be empty")
     long phoneNo;
     @NotEmpty(message = "Pincode can't be empty")
@@ -30,11 +30,11 @@ public class OrderDetails {
     }
 
     //Constructor
-    public OrderDetails(String orderId, String useremailid, String washerName, int washpackId, long phoneNo, String areapincode, String status, Car cars) {
+    public OrderDetails(String orderId, String useremailid, String washerName, String washpack, long phoneNo, String areapincode, String status, Car cars) {
         this.orderId = orderId;
         this.useremailid = useremailid;
         this.washerName = washerName;
-        this.washpackId = washpackId;
+        this.washpack = washpack;
         this.phoneNo = phoneNo;
         this.areapincode = areapincode;
         this.status = status;
@@ -66,11 +66,11 @@ public class OrderDetails {
     public void setWasherName(String washerName) {
         this.washerName = washerName;
     }
-    public int getWashpackId() {
-        return washpackId;
+    public String getWashpack() {
+        return washpack;
     }
-    public void setWashpackId(int washpackId) {
-        this.washpackId = washpackId;
+    public void setWashpack(String washpack) {
+        this.washpack = washpack;
     }
     public long getPhoneNo() {
         return phoneNo;
@@ -97,7 +97,7 @@ public class OrderDetails {
                 "orderId='" + orderId + '\'' +
                 ", useremailid='" + useremailid + '\'' +
                 ", washerName='" + washerName + '\'' +
-                ", washpackId=" + washpackId +
+                ", washpack=" + washpack +
                 ", phoneNo=" + phoneNo +
                 ", areapincode='" + areapincode + '\'' +
                 ", status='" + status + '\'' +

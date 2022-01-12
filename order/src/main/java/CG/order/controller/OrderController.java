@@ -54,7 +54,7 @@ public class OrderController {
         OrderDetails existingOrder=or.findById(orderId).orElseThrow(() -> new API_requestException("Order with ID -> "+orderId+" not found,update failed"));
         //OrderId won't be updated for @putmapping
         //WasherName can't be updated by user
-        existingOrder.setWashpackId(orderDetails.getWashpackId());
+        existingOrder.setWashpack(orderDetails.getWashpack());
         //Status can't be updated by the user
         existingOrder.setCars(orderDetails.getCars());
         existingOrder.setUseremailid(orderDetails.getUseremailid());

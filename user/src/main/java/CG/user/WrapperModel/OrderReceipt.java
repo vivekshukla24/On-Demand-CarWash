@@ -3,7 +3,7 @@ package CG.user.WrapperModel;
 import CG.user.model.WashPacks;
 
 public class OrderReceipt {
-    private int orderID;
+    private String orderID;
     private String CustomerEmail;
     private String WasherName;
     private String washPackName;
@@ -16,20 +16,20 @@ public class OrderReceipt {
     }
 
     //Constructor
-    public OrderReceipt(int orderID, String customerEmail, String washerName, String washPackName, String washPackDetails, int washPckPrice) {
+    public OrderReceipt(String orderID, String customerEmail, String washerName, String washPackName, String washPackDetails, int washPckPrice) {
         this.orderID = orderID;
-        CustomerEmail = customerEmail;
-        WasherName = washerName;
+        this.CustomerEmail = customerEmail;
+        this.WasherName = washerName;
         this.washPackName = washPackName;
         this.washPackDetails = washPackDetails;
         this.washPckPrice = washPckPrice;
     }
 
     //Getter and Setters
-    public int getOrderID() {
+    public String getOrderID() {
         return orderID;
     }
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
     public String getWasherName() {
