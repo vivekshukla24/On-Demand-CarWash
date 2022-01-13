@@ -3,7 +3,6 @@ package CG.zuulsecurity.services;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import CG.zuulsecurity.models.User;
@@ -42,6 +41,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	//save user using his role
 	public User saveUser(User user) {
 		//Bcrypt is a one-way strong Hashing Function
+		//Calling a bean in configuraton file(WebSecurityConfig)
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	    user.setEnabled(true);
 	    System.out.println(user.getRoles());
@@ -59,10 +59,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 		//Returning and logging the user
 	    return userRepository.save(user);
 	}
-	
+
+	//Used in JWT token provider
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
+		//Method defined in user repo
 	    User user = userRepository.findByEmail(email);
 	    if(user != null) {
 	        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());

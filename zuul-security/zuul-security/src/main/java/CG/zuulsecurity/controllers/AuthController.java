@@ -44,6 +44,7 @@ public class AuthController {
             System.out.println(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword())));
 
             String token = jwtTokenProvider.createToken(username, this.users.findByEmail(username).getRoles());
+            //Method defined in user repo
             User ExistingUser=userService.findUserByEmail(username);
             return new ResponseEntity<>(userService.updateTokenByID(ExistingUser,token),HttpStatus.OK);
         } catch (AuthenticationException e) {

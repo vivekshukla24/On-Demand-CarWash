@@ -30,12 +30,7 @@ public class JwtTokenProvider {
 
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
-	
-	@PostConstruct
-	protected void init() {
-	    secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-	}
-	
+
 	public String createToken(String username, Set<Role> set) {
 	    Claims claims = Jwts.claims().setSubject(username);
 	    claims.put("roles", set);
@@ -44,7 +39,7 @@ public class JwtTokenProvider {
 	    return Jwts.builder()//
 	        .setClaims(claims)//
 	        .setIssuedAt(now)//
-	        .setExpiration(validity)//
+	        .setExpiration(validity) //To expire the token after 1 Hour
 	        .signWith(SignatureAlgorithm.HS256, secretKey)//
 	        .compact();
 	}
@@ -57,8 +52,7 @@ public class JwtTokenProvider {
 	public String getUsername(String token) {
 	    return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
 	}
-	
-	
+
 	public String resolveToken(HttpServletRequest req) {
 	    String bearerToken = req.getHeader("Authorization");
 	    if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
@@ -77,5 +71,51 @@ public class JwtTokenProvider {
 	    } catch (JwtException | IllegalArgumentException e) {
 	        throw new JwtException("Expired or invalid JWT token");
 	    }
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	@PostConstruct
+	protected void init() {
+		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 }
