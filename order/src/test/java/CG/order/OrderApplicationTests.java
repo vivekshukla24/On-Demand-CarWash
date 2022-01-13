@@ -29,8 +29,8 @@ public class OrderApplicationTests {
 
 	@Test
 	public void saveOrderTest() {
-		OrderDetails sent=new OrderDetails(2,"Kenny",2,7233838,"something", Arrays.asList(new Car(1,"Hyundai"), new Car(2,"Skoda")));
-		OrderDetails received=new OrderDetails(2,"NA",2,7233838,"Pending", Arrays.asList(new Car(1,"Hyundai"), new Car(2,"Skoda")));
+		OrderDetails sent=new OrderDetails(ab,"Kenny",2,7233838,"something", Arrays.asList(new Car(1,"Hyundai","i10")));
+		OrderDetails received=new OrderDetails(bc,"Joel",2,7233838,"Pending", Arrays.asList(new Car(1,"Hyundai","i20")));
 		assertNotSame(received,sent);
 	}
 
@@ -39,7 +39,7 @@ public class OrderApplicationTests {
 		when(or.findAll()).thenReturn(Stream.of(
 				new OrderDetails(1,"Kenny",2,67356333,"Pending", Arrays.asList(new Car(1,"Honda"))),
 				new OrderDetails(2,"Joel",2,7233838,"Pending", Arrays.asList(new Car(1,"Hyundai"), new Car(2,"Skoda"))),
-				new OrderDetails(3,"Kenny",3,86282223,"Completed", Arrays.asList(new Car(1,"BMW"),new Car(2,"Mercedes"), new Car(3,"Verna"))),
+				new OrderDetails(3,"Kenny",3,86282223,"Completed", Arrays.asList(new Car(1,"BMW"))),
 				new OrderDetails(4,"Joel",1,34624443,"Completed", Arrays.asList(new Car(1,"Honda"))),
 				new OrderDetails(5,"Kenny",2,935324443,"Completed", Arrays.asList(new Car(1,"Maruti"))),
 				new OrderDetails(6,"Joel",3,264324443,"Pending", Arrays.asList(new Car(1,"Grand i10")))
