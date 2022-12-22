@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)    
 # On Demand Car Wash
 
-This a on demand car wash service made using microservice architecture
+This is on demand car wash service made using microservice architecture
 with the following tools.
 
 - IntelliJ IDEA Community edition 2021.2.3
